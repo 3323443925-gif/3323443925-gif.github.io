@@ -8,7 +8,7 @@ export const site = {
   intro:
     '我是前端工程师，关注前端工程、内容系统与交互细节。这里收录我做过的项目，以及关于技术实践与工程判断的记录。',
   status: '整理作品与写作中',
-  github: 'https://github.com/fengfengfeng12',
+  github: 'https://github.com/3323443925-gif',
   nav: [
     { href: '/projects/', label: '项目' },
     { href: '/blog/', label: '文章' },
