@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+import { publicProjects } from '../../lib/content';
+
+const projects = publicProjects(await getCollection('projects'));
+---
+
+<BaseLayout title="项目" description="公开项目与作品：职责、技术栈与关键成果。">
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Work / Index</p>
+      <h1 class="page-title">项目</h1>
+      <p class="page-lead">
+        这里收录已公开的项目与作品。每个项目都写清楚职责、技术选择与结果，而不只是截图。
+      </p>
+      <p class="count-note">{projects.length} 个公开项目</p>
+    </div>
+  </section>
+
+  <div class="container">
+    {projects.length > 0 ? (
+      <div class="project-grid">
+        {projects.map((project) => <ProjectCard project={project} />)}
+      </div>
+    ) : (
+      <p class="empty-state">暂无公开项目，新的内容正在整理中。</p>
+    )}
+  </div>
+</BaseLayout>

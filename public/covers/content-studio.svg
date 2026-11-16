@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img">
+  <title>Atlas 内容工作台封面</title>
+  <defs>
+    <pattern id="grid-atlas" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M80 0H0V80" fill="none" stroke="#6f8cf5" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="1000" fill="#1f47d6"/>
+  <rect width="1600" height="1000" fill="url(#grid-atlas)" opacity="0.4"/>
+  <text x="1130" y="300" font-family="ui-monospace, Menlo, monospace" font-size="22" letter-spacing="6" fill="#f7f5f0">CONTENT WORKBENCH</text>
+  <line x1="1130" y1="336" x2="1480" y2="336" stroke="#f7f5f0" stroke-opacity="0.45" stroke-width="1"/>
+  <text x="1130" y="430" font-family="-apple-system, 'Segoe UI', sans-serif" font-size="150" font-weight="800" letter-spacing="-8" fill="#f7f5f0" opacity="0.16">01</text>
+  <rect x="120" y="150" width="960" height="700" rx="24" fill="#f7f5f0"/>
+  <path d="M120 222h960" stroke="#ded9ce" stroke-width="1"/>
+  <circle cx="168" cy="186" r="7" fill="#b4552d"/>
+  <circle cx="194" cy="186" r="7" fill="#c9c3b6"/>
+  <circle cx="220" cy="186" r="7" fill="#c9c3b6"/>
+  <text x="260" y="194" font-family="ui-monospace, Menlo, monospace" font-size="19" letter-spacing="3" fill="#767b85">ATLAS / EDITOR</text>
+  <rect x="160" y="270" width="520" height="24" rx="6" fill="#171a1f"/>
+  <rect x="160" y="322" width="820" height="13" rx="6.5" fill="#ded9ce"/>
+  <rect x="160" y="352" width="760" height="13" rx="6.5" fill="#ded9ce"/>
+  <rect x="160" y="382" width="800" height="13" rx="6.5" fill="#ded9ce"/>
+  <rect x="160" y="430" width="300" height="13" rx="6.5" fill="#1f47d6" opacity="0.85"/>
+  <rect x="160" y="464" width="640" height="13" rx="6.5" fill="#ded9ce"/>
+  <rect x="160" y="494" width="700" height="13" rx="6.5" fill="#ded9ce"/>
+  <rect x="160" y="524" width="520" height="13" rx="6.5" fill="#ded9ce"/>
+  <rect x="160" y="586" width="240" height="86" rx="12" fill="#e9edfb"/>
+  <rect x="424" y="586" width="240" height="86" rx="12" fill="#efece4"/>
+  <rect x="688" y="586" width="240" height="86" rx="12" fill="#efece4"/>
+  <rect x="160" y="700" width="400" height="13" rx="6.5" fill="#ded9ce"/>
+  <rect x="160" y="730" width="330" height="13" rx="6.5" fill="#ded9ce"/>
+  <rect x="760" y="270" width="240" height="300" rx="14" fill="#e9edfb"/>
+  <rect x="790" y="300" width="120" height="12" rx="6" fill="#1f47d6" opacity="0.7"/>
+  <rect x="790" y="336" width="180" height="10" rx="5" fill="#a9b8e8"/>
+  <rect x="790" y="362" width="150" height="10" rx="5" fill="#a9b8e8"/>
+  <rect x="790" y="388" width="170" height="10" rx="5" fill="#a9b8e8"/>
+  <rect x="790" y="430" width="180" height="54" rx="8" fill="#f7f5f0"/>
+  <rect x="790" y="500" width="180" height="10" rx="5" fill="#a9b8e8"/>
+  <rect x="790" y="524" width="120" height="10" rx="5" fill="#a9b8e8"/>
+  <rect x="1130" y="520" width="350" height="1" fill="#f7f5f0" opacity="0.4"/>
+  <text x="1130" y="570" font-family="ui-monospace, Menlo, monospace" font-size="18" letter-spacing="4" fill="#f7f5f0" opacity="0.8">WRITE · REVIEW · PUBLISH</text>
+</svg>

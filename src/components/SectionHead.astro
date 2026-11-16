@@ -1,0 +1,22 @@
+---
+interface Props {
+  label: string;
+  title: string;
+  href?: string;
+  linkText?: string;
+}
+
+const { label, title, href, linkText = '查看全部' } = Astro.props;
+---
+
+<div class="section-head">
+  <div>
+    <p class="section-label">{label}</p>
+    <h2 class="section-title">{title}</h2>
+  </div>
+  {href && (
+    <a class="section-link" href={href}>
+      {linkText} <span class="arrow">→</span>
+    </a>
+  )}
+</div>

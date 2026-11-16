@@ -1,0 +1,23 @@
+---
+import { formatDate, postReadingTime } from '../lib/content';
+import type { Post } from '../lib/content';
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+const { title, slug, summary, date } = post.data;
+const href = `/blog/${slug}/`;
+---
+
+<article class="post-row">
+  <div class="post-date">{formatDate(date)}</div>
+  <div>
+    <h3 class="post-title">
+      <a href={href}>{title}</a>
+    </h3>
+    <p class="post-summary">{summary}</p>
+  </div>
+  <div class="post-time">{postReadingTime(post)} 分钟</div>
+</article>

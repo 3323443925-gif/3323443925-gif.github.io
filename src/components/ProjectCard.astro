@@ -1,0 +1,67 @@
+---
+import { formatDate } from '../lib/content';
+import type { Project } from '../lib/content';
+
+interface Props {
+  project: Project;
+  variant?: 'feature' | 'grid';
+}
+
+const { project, variant = 'grid' } = Astro.props;
+const { title, slug, summary, cover, role, stack, date } = project.data;
+const href = `/projects/${slug}/`;
+const year = formatDate(date).slice(0, 4);
+---
+
+{variant === 'feature' ? (
+  <article class="work-item">
+    <a class="work-cover" href={href} tabindex="-1" aria-hidden="true">
+      {cover && (
+        <img src={cover} alt="" width="1600" height="1000" loading="lazy" decoding="async" />
+      )}
+    </a>
+    <div class="work-body">
+      <div class="work-meta">
+        <span>{year}</span>
+        <span>{role}</span>
+      </div>
+      <h3 class="work-title">
+        <a href={href}>{title}</a>
+      </h3>
+      <p class="work-summary">{summary}</p>
+      <div class="stack">
+        {stack.map((item) => <span class="chip">{item}</span>)}
+      </div>
+      <a class="read-more" href={href}>
+        查看项目 <span class="arrow">→</span>
+      </a>
+    </div>
+  </article>
+) : (
+  <article class="project-card">
+    <a class="work-cover" href={href} tabindex="-1" aria-hidden="true">
+      {cover && (
+        <img src={cover} alt="" width="1600" height="1000" loading="lazy" decoding="async" />
+      )}
+    </a>
+    <div class="project-card-body">
+      <div class="work-meta">
+        <span>{role}</span>
+      </div>
+      <h3 class="work-title">
+        <a href={href}>{title}</a>
+      </h3>
+      <p class="work-summary">{summary}</p>
+      <div class="stack">
+        {stack.slice(0, 3).map((item) => <span class="chip">{item}</span>)}
+        {stack.length > 3 && <span class="chip">+{stack.length - 3}</span>}
+      </div>
+      <div class="project-card-foot">
+        <span class="project-year">{year}</span>
+        <a class="read-more" href={href}>
+          查看项目 <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </article>
+)}

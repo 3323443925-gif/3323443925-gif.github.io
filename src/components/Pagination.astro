@@ -1,0 +1,24 @@
+---
+interface Props {
+  page: number;
+  totalPages: number;
+}
+
+const { page, totalPages } = Astro.props;
+const hrefFor = (target: number) =>
+  target === 1 ? '/blog/' : `/blog/page/${target}/`;
+---
+
+<nav class="pagination" aria-label="分页">
+  {page > 1 ? (
+    <a class="page-btn" href={hrefFor(page - 1)}>← 上一页</a>
+  ) : (
+    <span class="page-btn disabled" aria-disabled="true">← 上一页</span>
+  )}
+  <span class="page-indicator">{page} / {totalPages}</span>
+  {page < totalPages ? (
+    <a class="page-btn" href={hrefFor(page + 1)}>下一页 →</a>
+  ) : (
+    <span class="page-btn disabled" aria-disabled="true">下一页 →</span>
+  )}
+</nav>

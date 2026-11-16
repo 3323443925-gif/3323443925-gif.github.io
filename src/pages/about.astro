@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import { site } from '../lib/site';
+
+const githubHandle = site.github
+  .replace(/^https?:\/\/github\.com\//, '')
+  .replace(/\/$/, '');
+---
+
+<BaseLayout title="关于" description="关于我：关注方向、经历与联系方式。">
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">About / Contact</p>
+      <h1 class="page-title">关于</h1>
+      <p class="page-lead">
+        写代码，也写字。关心信息如何被组织，也关心页面如何被读到最后一行。
+      </p>
+    </div>
+  </section>
+
+  <div class="about-main">
+    <div class="container about-grid">
+      <aside class="about-side">
+        <div class="profile-card">
+          <div class="profile-mark" aria-hidden="true">{site.monogram}</div>
+          <h2>{site.name}</h2>
+          <p class="profile-role">{site.role}</p>
+          <dl class="profile-facts">
+            <div>
+              <dt>状态</dt>
+              <dd>{site.status}</dd>
+            </div>
+            <div>
+              <dt>GitHub</dt>
+              <dd>
+                <a href={site.github} target="_blank" rel="noopener noreferrer">
+                  @{githubHandle} ↗
+                </a>
+              </dd>
+            </div>
+            <div>
+              <dt>本站</dt>
+              <dd>Astro · GitHub Pages</dd>
+            </div>
+          </dl>
+        </div>
+      </aside>
+
+      <div>
+        <section class="about-section">
+          <h2>简介</h2>
+          <p class="about-intro">
+            我是前端工程师，主要做内容平台与数据产品的界面开发。比起堆功能，更在意信息结构、加载性能和长期可维护性。
+          </p>
+          <p>
+            这个站点用 Astro 构建，源码放在 GitHub，托管在 GitHub Pages。写这里的文章，是为了把项目里模糊的判断写清楚，也给将来的自己留一份记录。
+          </p>
+        </section>
+
+        <section class="about-section">
+          <h2>关注方向</h2>
+          <dl>
+            <div class="skill-group">
+              <dt>语言</dt>
+              <dd>TypeScript / JavaScript / HTML / CSS</dd>
+            </div>
+            <div class="skill-group">
+              <dt>框架</dt>
+              <dd>React / Vue / Astro</dd>
+            </div>
+            <div class="skill-group">
+              <dt>工程</dt>
+              <dd>Vite / Node.js / Git / GitHub Actions</dd>
+            </div>
+            <div class="skill-group">
+              <dt>方向</dt>
+              <dd>内容系统、设计系统、性能优化</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="about-section">
+          <h2>经历</h2>
+          <ol class="timeline">
+            <li>
+              <span class="time">2024 — 至今</span>
+              <div>
+                <strong>前端工程师 · 内容平台</strong>
+                <p>负责编辑器与内容管理界面的开发，持续优化首屏性能与交互细节。</p>
+              </div>
+            </li>
+            <li>
+              <span class="time">2022 — 2024</span>
+              <div>
+                <strong>前端工程师 · 数据产品</strong>
+                <p>参与可视化看板从 0 到 1 的搭建，沉淀图表与筛选类基础组件。</p>
+              </div>
+            </li>
+            <li>
+              <span class="time">2021 — 2022</span>
+              <div>
+                <strong>前端实习生</strong>
+                <p>维护组件库与站点模板，开始习惯用文档记录每一次取舍。</p>
+              </div>
+            </li>
+          </ol>
+        </section>
+
+        <section class="about-section" id="contact">
+          <h2>联系</h2>
+          <p>不在页面上公开邮箱。可以通过 GitHub 找到我，或在任意仓库提 Issue。</p>
+          <div class="contact-card">
+            <div>
+              <p class="mono-label">GitHub</p>
+              <p>@{githubHandle} · 代码、项目与这个站点的源码。</p>
+            </div>
+            <a
+              class="copy-btn"
+              href={site.github}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              前往 GitHub <span class="arrow">↗</span>
+            </a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

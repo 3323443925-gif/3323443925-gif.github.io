@@ -1,0 +1,115 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../components/BaseLayout.astro';
+import AuthorCard from '../../components/AuthorCard.astro';
+import {
+  publicPosts,
+  postReadingTime,
+  formatDate,
+} from '../../lib/content';
+import type { Post } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const posts = publicPosts(await getCollection('blog'));
+  return posts.map((post, index) => ({
+    params: { slug: post.data.slug },
+    props: {
+      post,
+      newer: posts[index - 1],
+      older: posts[index + 1],
+    },
+  }));
+}
+
+interface Props {
+  post: Post;
+  newer?: Post;
+  older?: Post;
+}
+
+const { post, newer, older } = Astro.props;
+const { Content } = await render(post);
+const data = post.data;
+const minutes = postReadingTime(post);
+const updated = data.updated && data.updated > data.date ? data.updated : undefined;
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.summary}
+  image={data.cover ?? '/og-default.png'}
+  type="article"
+  publishedTime={data.date}
+  modifiedTime={data.updated}
+>
+  <article>
+    <header class="article-header">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="面包屑导航">
+          <a href="/blog/">文章</a>
+          <span>/</span>
+          <span>{data.title}</span>
+        </nav>
+
+        <h1 class="article-title">{data.title}</h1>
+        <p class="article-summary">{data.summary}</p>
+
+        <div class="article-meta">
+          <span>{formatDate(data.date)}</span>
+          {updated && (
+            <>
+              <span class="sep" aria-hidden="true"></span>
+              <span>更新于 {formatDate(updated)}</span>
+            </>
+          )}
+          <span class="sep" aria-hidden="true"></span>
+          <span>{minutes} 分钟阅读</span>
+        </div>
+
+        {data.tags.length > 0 && (
+          <div class="stack">
+            {data.tags.map((tag) => <span class="chip">{tag}</span>)}
+          </div>
+        )}
+
+        {data.cover && (
+          <figure class="detail-cover">
+            <img
+              src={data.cover}
+              alt={`${data.title} 的文章封面`}
+              width="1600"
+              height="800"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        )}
+      </div>
+    </header>
+
+    <div class="container detail-body">
+      <div class="prose">
+        <Content />
+      </div>
+
+      <AuthorCard />
+
+      {(newer || older) && (
+        <nav class="adjacent-nav" aria-label="文章导航">
+          {newer && (
+            <a href={`/blog/${newer.data.slug}/`}>
+              <span class="dir">← 上一篇</span>
+              <span class="name">{newer.data.title}</span>
+            </a>
+          )}
+          {older && (
+            <a class="next" href={`/blog/${older.data.slug}/`}>
+              <span class="dir">下一篇 →</span>
+              <span class="name">{older.data.title}</span>
+            </a>
+          )}
+        </nav>
+      )}
+    </div>
+  </article>
+</BaseLayout>

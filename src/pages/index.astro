@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import SectionHead from '../components/SectionHead.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import PostRow from '../components/PostRow.astro';
+import { getCollection } from 'astro:content';
+import { publicProjects, publicPosts } from '../lib/content';
+import { site } from '../lib/site';
+
+const projects = publicProjects(await getCollection('projects')).slice(0, 6);
+const posts = publicPosts(await getCollection('blog')).slice(0, 5);
+---
+
+<BaseLayout>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">Portfolio · Blog</p>
+        <h1 class="hero-title">
+          {site.name}
+          <span class="hero-sub">{site.tagline}</span>
+        </h1>
+        <p class="hero-lead">{site.intro}</p>
+        <div class="actions">
+          <a class="button primary" href="/projects/">查看项目 <span class="arrow">→</span></a>
+          <a class="button secondary" href="/about/#contact">联系我</a>
+        </div>
+      </div>
+
+      <aside class="hero-index" aria-label="页面索引">
+        <p class="mono-label">Index</p>
+        <ol>
+          <li>
+            <a href="#projects"><span class="idx">01</span>精选项目<span class="arr">↘</span></a>
+          </li>
+          <li>
+            <a href="#writing"><span class="idx">02</span>最新文章<span class="arr">↘</span></a>
+          </li>
+          <li>
+            <a href="/about/"><span class="idx">03</span>关于与联系<span class="arr">↘</span></a>
+          </li>
+        </ol>
+        <p class="hero-status"><span class="status-dot"></span>{site.status}</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="container">
+      <SectionHead
+        label="01 / Selected work"
+        title="精选项目"
+        href="/projects/"
+        linkText="全部项目"
+      />
+      {projects.length > 0 ? (
+        <div class="work-list">
+          {projects.map((project) => <ProjectCard project={project} variant="feature" />)}
+        </div>
+      ) : (
+        <p class="empty-state">还没有公开项目，新的内容正在整理中。</p>
+      )}
+    </div>
+  </section>
+
+  <section class="section" id="writing">
+    <div class="container">
+      <SectionHead
+        label="02 / Latest writing"
+        title="最新文章"
+        href="/blog/"
+        linkText="全部文章"
+      />
+      {posts.length > 0 ? (
+        <div class="post-list">
+          {posts.map((post) => <PostRow post={post} />)}
+        </div>
+      ) : (
+        <p class="empty-state">还没有发布文章，可以先看看项目。</p>
+      )}
+    </div>
+  </section>
+</BaseLayout>

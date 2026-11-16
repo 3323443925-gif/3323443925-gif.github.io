@@ -1,0 +1,126 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../components/BaseLayout.astro';
+import { publicProjects, formatDate } from '../../lib/content';
+import type { Project } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const projects = publicProjects(await getCollection('projects'));
+  return projects.map((project, index) => ({
+    params: { slug: project.data.slug },
+    props: {
+      project,
+      prev: projects[index - 1],
+      next: projects[index + 1],
+    },
+  }));
+}
+
+interface Props {
+  project: Project;
+  prev?: Project;
+  next?: Project;
+}
+
+const { project, prev, next } = Astro.props;
+const { Content } = await render(project);
+const data = project.data;
+const year = formatDate(data.date).slice(0, 4);
+const links = [
+  ...(data.repoUrl ? [{ label: '代码仓库', url: data.repoUrl }] : []),
+  ...(data.demoUrl ? [{ label: '线上演示', url: data.demoUrl }] : []),
+];
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.summary}
+  image={data.cover ?? '/og-default.png'}
+>
+  <article>
+    <header class="article-header">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="面包屑导航">
+          <a href="/projects/">项目</a>
+          <span>/</span>
+          <span>{data.title}</span>
+        </nav>
+
+        <h1 class="article-title">{data.title}</h1>
+        <p class="article-summary">{data.summary}</p>
+
+        <div class="stack">
+          {data.stack.map((item) => <span class="chip">{item}</span>)}
+        </div>
+
+        <dl class="fact-grid">
+          <div>
+            <dt>年份</dt>
+            <dd>{year}</dd>
+          </div>
+          <div>
+            <dt>职责</dt>
+            <dd>{data.role}</dd>
+          </div>
+          <div>
+            <dt>链接</dt>
+            <dd>
+              {links.length > 0
+                ? links.map((link, index) => (
+                    <>
+                      {index > 0 && ' · '}
+                      <a href={link.url} target="_blank" rel="noopener noreferrer">
+                        {link.label} ↗
+                      </a>
+                    </>
+                  ))
+                : '暂未公开'}
+            </dd>
+          </div>
+        </dl>
+
+        {data.highlights.length > 0 && (
+          <ul class="highlights">
+            {data.highlights.map((item) => <li>{item}</li>)}
+          </ul>
+        )}
+
+        {data.cover && (
+          <figure class="detail-cover">
+            <img
+              src={data.cover}
+              alt={`${data.title} 的项目封面`}
+              width="1600"
+              height="800"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        )}
+      </div>
+    </header>
+
+    <div class="container detail-body">
+      <div class="prose">
+        <Content />
+      </div>
+
+      {(prev || next) && (
+        <nav class="adjacent-nav" aria-label="项目导航">
+          {prev && (
+            <a href={`/projects/${prev.data.slug}/`}>
+              <span class="dir">← 上一个项目</span>
+              <span class="name">{prev.data.title}</span>
+            </a>
+          )}
+          {next && (
+            <a class="next" href={`/projects/${next.data.slug}/`}>
+              <span class="dir">下一个项目 →</span>
+              <span class="name">{next.data.title}</span>
+            </a>
+          )}
+        </nav>
+      )}
+    </div>
+  </article>
+</BaseLayout>
