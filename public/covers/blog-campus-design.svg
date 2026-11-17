@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img">
+  <title>校园招聘平台角色设计文章封面</title>
+  <rect width="1600" height="1000" fill="#e4e8fb"/>
+  <text x="120" y="104" font-family="ui-monospace, Menlo, monospace" font-size="20" letter-spacing="5" fill="#3b3f47">ROLES / WORKFLOW</text>
+  <text x="1480" y="104" text-anchor="end" font-family="ui-monospace, Menlo, monospace" font-size="18" letter-spacing="4" fill="#4f5f9e">04 ROLES</text>
+  <line x1="120" y1="136" x2="1480" y2="136" stroke="#b9c6ef"/>
+
+  <g>
+    <rect x="140" y="220" width="620" height="220" rx="14" fill="#fbf8f1" stroke="#c9d3f0"/>
+    <text x="180" y="278" font-family="ui-monospace, Menlo, monospace" font-size="17" letter-spacing="3" fill="#1b3fdf">STUDENT</text>
+    <rect x="180" y="310" width="300" height="10" rx="5" fill="#d8d1c2"/>
+    <rect x="180" y="338" width="240" height="10" rx="5" fill="#d8d1c2"/>
+    <rect x="180" y="384" width="92" height="26" rx="13" fill="#e4e8fb"/>
+    <rect x="284" y="384" width="86" height="26" rx="13" fill="#e7e1d3"/>
+
+    <rect x="820" y="220" width="620" height="220" rx="14" fill="#fbf8f1" stroke="#c9d3f0"/>
+    <text x="860" y="278" font-family="ui-monospace, Menlo, monospace" font-size="17" letter-spacing="3" fill="#d94a22">HR</text>
+    <rect x="860" y="310" width="340" height="10" rx="5" fill="#d8d1c2"/>
+    <rect x="860" y="338" width="260" height="10" rx="5" fill="#d8d1c2"/>
+    <rect x="860" y="384" width="100" height="26" rx="13" fill="#fbe9e2"/>
+    <rect x="972" y="384" width="86" height="26" rx="13" fill="#e4e8fb"/>
+
+    <rect x="140" y="480" width="620" height="220" rx="14" fill="#fbf8f1" stroke="#c9d3f0"/>
+    <text x="180" y="538" font-family="ui-monospace, Menlo, monospace" font-size="17" letter-spacing="3" fill="#121419">TEACHER</text>
+    <rect x="180" y="570" width="280" height="10" rx="5" fill="#d8d1c2"/>
+    <rect x="180" y="598" width="220" height="10" rx="5" fill="#d8d1c2"/>
+    <rect x="180" y="644" width="120" height="26" rx="13" fill="#e7e1d3"/>
+
+    <rect x="820" y="480" width="620" height="220" rx="14" fill="#121419"/>
+    <text x="860" y="538" font-family="ui-monospace, Menlo, monospace" font-size="17" letter-spacing="3" fill="#f2eee4">ADMIN</text>
+    <rect x="860" y="570" width="330" height="10" rx="5" fill="#5f636c"/>
+    <rect x="860" y="598" width="250" height="10" rx="5" fill="#5f636c"/>
+    <rect x="860" y="644" width="100" height="26" rx="13" fill="#1b3fdf"/>
+  </g>
+
+  <g font-family="ui-monospace, Menlo, monospace" font-size="14" letter-spacing="2" fill="#3b3f47">
+    <text x="120" y="786">JOB POSTING</text>
+    <text x="390" y="786">RESUME</text>
+    <text x="600" y="786">INTERVIEW</text>
+    <text x="830" y="786">OFFER</text>
+  </g>
+  <g stroke="#1b3fdf" stroke-width="3">
+    <line x1="270" y1="760" x2="360" y2="760"/>
+    <line x1="500" y1="760" x2="570" y2="760"/>
+    <line x1="710" y1="760" x2="800" y2="760"/>
+    <line x1="930" y1="760" x2="1000" y2="760"/>
+  </g>
+  <g fill="#1b3fdf">
+    <path d="M355 750l14 10-14 10z"/>
+    <path d="M565 750l14 10-14 10z"/>
+    <path d="M795 750l14 10-14 10z"/>
+    <path d="M995 750l14 10-14 10z"/>
+  </g>
+
+  <circle cx="800" cy="890" r="54" fill="#121419"/>
+  <text x="800" y="903" text-anchor="middle" font-family="-apple-system, 'Segoe UI', sans-serif" font-size="34" font-weight="700" fill="#f2eee4">AI</text>
+  <text x="880" y="880" font-family="monospace" font-size="13" letter-spacing="2" fill="#3b3f47">ASSIST, NOT DECIDE</text>
+
+  <text x="1480" y="930" text-anchor="end" font-family="-apple-system, 'Segoe UI', sans-serif" font-size="210" font-weight="800" fill="none" stroke="#b9c6ef" stroke-width="2">04</text>
+</svg>

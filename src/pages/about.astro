@@ -7,13 +7,16 @@ const githubHandle = site.github
   .replace(/\/$/, '');
 ---
 
-<BaseLayout title="关于" description="关于我：关注方向、经历与联系方式。">
+<BaseLayout
+  title="关于"
+  description="软件技术专业学生：Java 后端、AI 全栈学习路径与联系方式。"
+>
   <section class="page-hero" data-watermark="ABOUT">
     <div class="container">
       <p class="eyebrow">About / Contact</p>
       <h1 class="page-title">关于</h1>
       <p class="page-lead">
-        写代码，也写字。关心信息如何被组织，也关心页面如何被读到最后一行。
+        从 Java 后端出发，理解完整系统。写代码，也写清楚每一次取舍。
       </p>
     </div>
   </section>
@@ -29,7 +32,11 @@ const githubHandle = site.github
           <dl class="profile-facts">
             <div>
               <dt>状态</dt>
-              <dd>{site.status}</dd>
+              <dd>在读学生</dd>
+            </div>
+            <div>
+              <dt>方向</dt>
+              <dd>Java 后端 / AI 全栈</dd>
             </div>
             <div>
               <dt>GitHub</dt>
@@ -51,57 +58,61 @@ const githubHandle = site.github
         <section class="about-section" data-reveal>
           <h2>简介</h2>
           <p class="about-intro">
-            我是前端工程师，主要做内容平台与数据产品的界面开发。比起堆功能，更在意信息结构、加载性能和长期可维护性。
+            我是软件技术专业的学生，方向偏后端。日常主要写 Java，用 Spring Boot、MyBatis 和 MySQL 做项目，也在学习如何把大模型能力接进真实项目。
           </p>
           <p>
-            这个站点用 Astro 构建，源码放在 GitHub，托管在 GitHub Pages。写这里的文章，是为了把项目里模糊的判断写清楚，也给将来的自己留一份记录。
+            这个站点用 Astro 构建，内容放在 GitHub，托管在 GitHub Pages。写文章是为了把项目里的判断和踩过的坑记下来，也给未来的自己留一份索引。
           </p>
         </section>
 
         <section class="about-section" data-reveal>
-          <h2>关注方向</h2>
+          <h2>技术栈</h2>
           <dl>
             <div class="skill-group">
               <dt>语言</dt>
-              <dd>TypeScript / JavaScript / HTML / CSS</dd>
+              <dd>Java / SQL / JavaScript / Python（学习中）</dd>
             </div>
             <div class="skill-group">
-              <dt>框架</dt>
-              <dd>React / Vue / Astro</dd>
+              <dt>后端</dt>
+              <dd>Spring Boot / MyBatis / Servlet / RESTful API</dd>
             </div>
             <div class="skill-group">
-              <dt>工程</dt>
-              <dd>Vite / Node.js / Git / GitHub Actions</dd>
+              <dt>数据</dt>
+              <dd>MySQL / JDBC / 数据库设计</dd>
             </div>
             <div class="skill-group">
-              <dt>方向</dt>
-              <dd>内容系统、设计系统、性能优化</dd>
+              <dt>AI 应用</dt>
+              <dd>Spring AI / DeepSeek API / 结构化输出</dd>
+            </div>
+            <div class="skill-group">
+              <dt>工具</dt>
+              <dd>Git / Maven / Linux / Postman</dd>
             </div>
           </dl>
         </section>
 
         <section class="about-section" data-reveal>
-          <h2>经历</h2>
+          <h2>学习路径</h2>
           <ol class="timeline">
             <li>
-              <span class="time">2024 — 至今</span>
+              <span class="time">现在</span>
               <div>
-                <strong>前端工程师 · 内容平台</strong>
-                <p>负责编辑器与内容管理界面的开发，持续优化首屏性能与交互细节。</p>
+                <strong>软件技术专业 · 在读</strong>
+                <p>系统学习 Java、数据库与后端工程，目标方向是 AI 全栈开发。</p>
               </div>
             </li>
             <li>
-              <span class="time">2022 — 2024</span>
+              <span class="time">2026</span>
               <div>
-                <strong>前端工程师 · 数据产品</strong>
-                <p>参与可视化看板从 0 到 1 的搭建，沉淀图表与筛选类基础组件。</p>
+                <strong>项目实践</strong>
+                <p>完成校园招聘平台、员工管理系统与电商系统三个 Java 项目，覆盖 Servlet 与 Spring Boot。</p>
               </div>
             </li>
             <li>
-              <span class="time">2021 — 2022</span>
+              <span class="time">持续</span>
               <div>
-                <strong>前端实习生</strong>
-                <p>维护组件库与站点模板，开始习惯用文档记录每一次取舍。</p>
+                <strong>工程基础</strong>
+                <p>数据结构、计算机网络、操作系统与 Git，边学边用，尽量放进真实项目里验证。</p>
               </div>
             </li>
           </ol>

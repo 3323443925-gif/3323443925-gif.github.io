@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img">
+  <title>Servlet 与 MVC 文章封面</title>
+  <defs>
+    <pattern id="grid-servlet" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M80 0H0V80" fill="none" stroke="#2c313c" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="1000" fill="#121419"/>
+  <rect width="1600" height="1000" fill="url(#grid-servlet)" opacity="0.8"/>
+  <text x="120" y="104" font-family="ui-monospace, Menlo, monospace" font-size="20" letter-spacing="5" fill="#b7ae9c">SERVLET / MVC</text>
+  <text x="1480" y="104" text-anchor="end" font-family="ui-monospace, Menlo, monospace" font-size="18" letter-spacing="4" fill="#6f8cf5">JAVA 23 · TOMCAT 10</text>
+  <line x1="120" y1="136" x2="1480" y2="136" stroke="#3a404d"/>
+
+  <g font-family="ui-monospace, Menlo, monospace" font-size="14" letter-spacing="3" fill="#8f97a6">
+    <text x="140" y="330">VIEW</text>
+    <text x="420" y="330">CONTROLLER</text>
+    <text x="740" y="330">MODEL</text>
+    <text x="1070" y="330">DATABASE</text>
+  </g>
+
+  <rect x="120" y="360" width="230" height="140" rx="10" fill="#1f232c" stroke="#333947"/>
+  <text x="152" y="420" font-family="ui-monospace, Menlo, monospace" font-size="16" letter-spacing="2" fill="#f2eee4">BROWSER</text>
+  <rect x="152" y="442" width="150" height="8" rx="4" fill="#5f636c"/>
+
+  <rect x="410" y="360" width="280" height="140" rx="10" fill="#1b3fdf"/>
+  <text x="442" y="420" font-family="ui-monospace, Menlo, monospace" font-size="16" letter-spacing="2" fill="#f2eee4">SERVLET</text>
+  <rect x="442" y="442" width="180" height="8" rx="4" fill="#b9c6ef"/>
+
+  <rect x="750" y="360" width="240" height="140" rx="10" fill="#1f232c" stroke="#333947"/>
+  <text x="782" y="420" font-family="ui-monospace, Menlo, monospace" font-size="16" letter-spacing="2" fill="#f2eee4">DAO</text>
+  <rect x="782" y="442" width="160" height="8" rx="4" fill="#5f636c"/>
+
+  <rect x="1050" y="360" width="300" height="140" rx="10" fill="#1f232c" stroke="#333947"/>
+  <text x="1082" y="420" font-family="ui-monospace, Menlo, monospace" font-size="16" letter-spacing="2" fill="#f2eee4">MYSQL</text>
+  <rect x="1082" y="442" width="220" height="8" rx="4" fill="#5f636c"/>
+
+  <g stroke="#6f8cf5" stroke-width="3">
+    <line x1="350" y1="430" x2="400" y2="430"/>
+    <line x1="690" y1="430" x2="740" y2="430"/>
+    <line x1="990" y1="430" x2="1040" y2="430"/>
+  </g>
+  <g fill="#6f8cf5">
+    <path d="M395 420l14 10-14 10z"/>
+    <path d="M735 420l14 10-14 10z"/>
+    <path d="M1035 420l14 10-14 10z"/>
+  </g>
+
+  <path d="M550 500v110" stroke="#3a404d" stroke-width="2" stroke-dasharray="6 8"/>
+  <rect x="410" y="620" width="580" height="170" rx="10" fill="#1f232c" stroke="#333947"/>
+  <text x="442" y="676" font-family="ui-monospace, Menlo, monospace" font-size="16" letter-spacing="2" fill="#f2eee4">JSP + JSTL</text>
+  <rect x="442" y="700" width="420" height="8" rx="4" fill="#5f636c"/>
+  <rect x="442" y="724" width="360" height="8" rx="4" fill="#5f636c"/>
+  <text x="920" y="676" font-family="ui-monospace, Menlo, monospace" font-size="13" letter-spacing="2" fill="#d94a22">RENDER</text>
+  <path d="M990 690c70 0 70 -130 20 -150" fill="none" stroke="#d94a22" stroke-width="2" stroke-dasharray="6 8"/>
+
+  <g font-family="ui-monospace, Menlo, monospace" font-size="14" letter-spacing="2" fill="#b7ae9c">
+    <rect x="120" y="850" width="130" height="36" rx="18" fill="#1f232c" stroke="#333947"/>
+    <text x="146" y="874">FACTORY</text>
+    <rect x="270" y="850" width="110" height="36" rx="18" fill="#1f232c" stroke="#333947"/>
+    <text x="296" y="874">PROXY</text>
+    <rect x="400" y="850" width="110" height="36" rx="18" fill="#1f232c" stroke="#333947"/>
+    <text x="426" y="874">FILTER</text>
+  </g>
+  <text x="1480" y="930" text-anchor="end" font-family="-apple-system, 'Segoe UI', sans-serif" font-size="230" font-weight="800" fill="none" stroke="#3a404d" stroke-width="2">MVC</text>
+</svg>
