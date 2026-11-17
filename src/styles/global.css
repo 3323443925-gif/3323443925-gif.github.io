@@ -104,6 +104,12 @@ button {
   border-radius: 2px;
 }
 
+.site-header :focus-visible,
+.hero :focus-visible,
+.site-footer :focus-visible {
+  outline-color: var(--cobalt-bright);
+}
+
 .skip-link {
   position: absolute;
   top: -64px;
@@ -150,6 +156,17 @@ h3,
 
 p {
   margin: 0 0 1em;
+}
+
+.hero-lead,
+.hero-sub,
+.work-summary,
+.post-summary,
+.page-lead,
+.article-summary,
+.footer-desc,
+.prose p {
+  text-wrap: pretty;
 }
 
 /* ---------- reading progress ---------- */
@@ -558,6 +575,18 @@ a:hover .arrow,
   color: var(--signal-bright);
   font-size: 12px;
   letter-spacing: 0;
+}
+
+.page-hero .eyebrow {
+  color: var(--ink-3);
+}
+
+.page-hero .eyebrow::before {
+  content: "✳";
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--signal);
 }
 
 .hero-status {
@@ -1171,6 +1200,25 @@ section[id] {
   color: var(--ink-3);
 }
 
+.page-hero .eyebrow,
+.page-hero .page-title,
+.page-hero .page-lead,
+.page-hero .count-note {
+  animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.page-hero .page-title {
+  animation-delay: 0.06s;
+}
+
+.page-hero .page-lead {
+  animation-delay: 0.14s;
+}
+
+.page-hero .count-note {
+  animation-delay: 0.2s;
+}
+
 /* ---------- project grid ---------- */
 
 .project-grid {
@@ -1234,6 +1282,27 @@ section[id] {
   font-size: 10.5px;
   letter-spacing: 0.06em;
   color: var(--ink-3);
+}
+
+@media (min-width: 801px) {
+  .project-grid > .project-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  }
+
+  .project-grid > .project-card:last-child:nth-child(odd) .work-cover {
+    height: 100%;
+    min-height: 320px;
+    aspect-ratio: auto;
+    border-right: 1px solid var(--line);
+    border-bottom: 0;
+  }
+
+  .project-grid > .project-card:last-child:nth-child(odd) .project-card-body {
+    justify-content: center;
+    padding: clamp(28px, 3.4vw, 44px);
+  }
 }
 
 /* ---------- post list ---------- */
@@ -2268,8 +2337,7 @@ section[id] {
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
-    animation-delay: 0ms !important;
+    animation: none !important;
     transition-duration: 0.01ms !important;
   }
 
