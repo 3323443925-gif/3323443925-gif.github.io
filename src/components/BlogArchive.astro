@@ -2,6 +2,7 @@
 import PostRow from './PostRow.astro';
 import Pagination from './Pagination.astro';
 import type { Post } from '../lib/content';
+import { PAGE_SIZE } from '../lib/site';
 
 interface Props {
   posts: Post[];
@@ -11,9 +12,10 @@ interface Props {
 }
 
 const { posts, page, totalPages, total } = Astro.props;
+const startIndex = (page - 1) * PAGE_SIZE;
 ---
 
-<section class="page-hero">
+<section class="page-hero" data-watermark="WRITING">
   <div class="container">
     <p class="eyebrow">Writing / Index</p>
     <h1 class="page-title">文章</h1>
@@ -29,7 +31,9 @@ const { posts, page, totalPages, total } = Astro.props;
     {posts.length === 0 ? (
       <p class="empty-state">还没有发布文章。可以先去 <a href="/projects/">看看项目</a>。</p>
     ) : (
-      posts.map((post) => <PostRow post={post} />)
+      posts.map((post, index) => (
+        <PostRow post={post} index={startIndex + index + 1} />
+      ))
     )}
   </div>
   {totalPages > 1 && <Pagination page={page} totalPages={totalPages} />}

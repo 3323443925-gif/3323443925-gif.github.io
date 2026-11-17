@@ -9,39 +9,68 @@ import { site } from '../lib/site';
 
 const projects = publicProjects(await getCollection('projects')).slice(0, 6);
 const posts = publicPosts(await getCollection('blog')).slice(0, 5);
+
+const tickerItems = ['内容系统', '前端工程', '设计系统', '性能优化', 'TypeScript', 'Astro'];
+const tickerLoop = [
+  ...tickerItems,
+  ...tickerItems,
+  ...tickerItems,
+  ...tickerItems,
+];
 ---
 
 <BaseLayout>
   <section class="hero">
-    <div class="container hero-grid">
-      <div>
-        <p class="eyebrow">Portfolio · Blog</p>
-        <h1 class="hero-title">
-          {site.name}
-          <span class="hero-sub">{site.tagline}</span>
-        </h1>
-        <p class="hero-lead">{site.intro}</p>
-        <div class="actions">
-          <a class="button primary" href="/projects/">查看项目 <span class="arrow">→</span></a>
-          <a class="button secondary" href="/about/#contact">联系我</a>
-        </div>
+    <div class="container">
+      <div class="hero-top">
+        <p class="eyebrow"><span class="eyebrow-star" aria-hidden="true">✳</span> Portfolio · Blog</p>
+        <p class="hero-status"><span class="status-dot"></span>{site.status}</p>
       </div>
 
-      <aside class="hero-index" aria-label="页面索引">
-        <p class="mono-label">Index</p>
-        <ol>
-          <li>
-            <a href="#projects"><span class="idx">01</span>精选项目<span class="arr">↘</span></a>
-          </li>
-          <li>
-            <a href="#writing"><span class="idx">02</span>最新文章<span class="arr">↘</span></a>
-          </li>
-          <li>
-            <a href="/about/"><span class="idx">03</span>关于与联系<span class="arr">↘</span></a>
-          </li>
-        </ol>
-        <p class="hero-status"><span class="status-dot"></span>{site.status}</p>
-      </aside>
+      <h1 class="hero-title">
+        {site.name}<span class="hero-dot" aria-hidden="true">.</span>
+      </h1>
+
+      <div class="hero-body">
+        <div class="hero-copy">
+          <p class="hero-sub">{site.tagline}</p>
+          <p class="hero-lead">{site.intro}</p>
+          <div class="actions">
+            <a class="button primary" href="/projects/">查看项目 <span class="arrow">→</span></a>
+            <a class="button secondary" href="/about/#contact">联系我</a>
+          </div>
+        </div>
+
+        <aside class="hero-index" aria-label="页面索引">
+          <p class="mono-label">Index</p>
+          <ol>
+            <li>
+              <a href="#projects"><span class="idx">01</span>精选项目<span class="arr">↘</span></a>
+            </li>
+            <li>
+              <a href="#writing"><span class="idx">02</span>最新文章<span class="arr">↘</span></a>
+            </li>
+            <li>
+              <a href="/about/"><span class="idx">03</span>关于与联系<span class="arr">↘</span></a>
+            </li>
+          </ol>
+        </aside>
+      </div>
+    </div>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        {[0, 1].map(() => (
+          <div class="ticker-group">
+            {tickerLoop.map((item) => (
+              <>
+                <span>{item}</span>
+                <span class="tick">✳</span>
+              </>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -55,7 +84,9 @@ const posts = publicPosts(await getCollection('blog')).slice(0, 5);
       />
       {projects.length > 0 ? (
         <div class="work-list">
-          {projects.map((project) => <ProjectCard project={project} variant="feature" />)}
+          {projects.map((project, index) => (
+            <ProjectCard project={project} variant="feature" index={index + 1} />
+          ))}
         </div>
       ) : (
         <p class="empty-state">还没有公开项目，新的内容正在整理中。</p>
@@ -73,7 +104,7 @@ const posts = publicPosts(await getCollection('blog')).slice(0, 5);
       />
       {posts.length > 0 ? (
         <div class="post-list">
-          {posts.map((post) => <PostRow post={post} />)}
+          {posts.map((post, index) => <PostRow post={post} index={index + 1} />)}
         </div>
       ) : (
         <p class="empty-state">还没有发布文章，可以先看看项目。</p>

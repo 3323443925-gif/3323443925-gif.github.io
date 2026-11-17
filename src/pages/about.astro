@@ -8,7 +8,7 @@ const githubHandle = site.github
 ---
 
 <BaseLayout title="关于" description="关于我：关注方向、经历与联系方式。">
-  <section class="page-hero">
+  <section class="page-hero" data-watermark="ABOUT">
     <div class="container">
       <p class="eyebrow">About / Contact</p>
       <h1 class="page-title">关于</h1>
@@ -21,7 +21,8 @@ const githubHandle = site.github
   <div class="about-main">
     <div class="container about-grid">
       <aside class="about-side">
-        <div class="profile-card">
+        <div class="profile-card" data-reveal>
+          <span class="profile-stamp" aria-hidden="true">✳</span>
           <div class="profile-mark" aria-hidden="true">{site.monogram}</div>
           <h2>{site.name}</h2>
           <p class="profile-role">{site.role}</p>
@@ -47,7 +48,7 @@ const githubHandle = site.github
       </aside>
 
       <div>
-        <section class="about-section">
+        <section class="about-section" data-reveal>
           <h2>简介</h2>
           <p class="about-intro">
             我是前端工程师，主要做内容平台与数据产品的界面开发。比起堆功能，更在意信息结构、加载性能和长期可维护性。
@@ -57,7 +58,7 @@ const githubHandle = site.github
           </p>
         </section>
 
-        <section class="about-section">
+        <section class="about-section" data-reveal>
           <h2>关注方向</h2>
           <dl>
             <div class="skill-group">
@@ -79,7 +80,7 @@ const githubHandle = site.github
           </dl>
         </section>
 
-        <section class="about-section">
+        <section class="about-section" data-reveal>
           <h2>经历</h2>
           <ol class="timeline">
             <li>
@@ -106,7 +107,7 @@ const githubHandle = site.github
           </ol>
         </section>
 
-        <section class="about-section" id="contact">
+        <section class="about-section" id="contact" data-reveal>
           <h2>联系</h2>
           <p>不在页面上公开邮箱。可以通过 GitHub 找到我，或在任意仓库提 Issue。</p>
           <div class="contact-card">

@@ -10,7 +10,7 @@ const year = new Date().getFullYear();
       <p class="eyebrow">Stay in touch</p>
       <h2 class="footer-title">有项目、文章或想法，<br />欢迎聊聊。</h2>
       <p class="footer-desc">
-        这个站点用来记录作品与写作。你可以通过 GitHub 或邮件找到我。
+        这个站点用来记录作品与写作。你可以通过 GitHub 或关于页联系我。
       </p>
     </div>
 
@@ -27,8 +27,13 @@ const year = new Date().getFullYear();
     </div>
   </div>
 
+  <div class="container footer-wordmark-wrap" aria-hidden="true">
+    <p class="footer-wordmark">{site.name}</p>
+  </div>
+
   <div class="container footer-bottom">
     <span>© {year} {site.name}</span>
+    <a class="back-top" href="#top">回到顶部 ↑</a>
     <span>Built with Astro · Hosted on GitHub Pages</span>
   </div>
 </footer>

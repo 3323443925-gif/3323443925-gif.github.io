@@ -8,7 +8,7 @@ const projects = publicProjects(await getCollection('projects'));
 ---
 
 <BaseLayout title="项目" description="公开项目与作品：职责、技术栈与关键成果。">
-  <section class="page-hero">
+  <section class="page-hero" data-watermark="WORK">
     <div class="container">
       <p class="eyebrow">Work / Index</p>
       <h1 class="page-title">项目</h1>
@@ -22,7 +22,9 @@ const projects = publicProjects(await getCollection('projects'));
   <div class="container">
     {projects.length > 0 ? (
       <div class="project-grid">
-        {projects.map((project) => <ProjectCard project={project} />)}
+        {projects.map((project, index) => (
+          <ProjectCard project={project} index={index + 1} />
+        ))}
       </div>
     ) : (
       <p class="empty-state">暂无公开项目，新的内容正在整理中。</p>
