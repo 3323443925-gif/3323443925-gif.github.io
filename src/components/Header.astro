@@ -30,6 +30,7 @@ const isActive = (href: string) =>
     </nav>
 
     <div class="header-actions">
+      <span class="header-clock" data-clock aria-hidden="true">LOCAL / CST</span>
       <a class="gh-link" href={site.github} target="_blank" rel="noopener noreferrer">
         GitHub ↗
       </a>
@@ -84,5 +85,24 @@ const isActive = (href: string) =>
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') setOpen(false);
     });
+  }
+
+  const clock = document.querySelector<HTMLElement>('[data-clock]');
+
+  if (clock) {
+    const formatter = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Asia/Shanghai',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hourCycle: 'h23',
+    });
+
+    const updateClock = () => {
+      clock.textContent = `${formatter.format(new Date())} CST`;
+    };
+
+    updateClock();
+    window.setInterval(updateClock, 1000);
   }
 </script>

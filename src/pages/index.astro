@@ -3,6 +3,7 @@ import BaseLayout from '../components/BaseLayout.astro';
 import SectionHead from '../components/SectionHead.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import PostRow from '../components/PostRow.astro';
+import ParticleField from '../components/ParticleField.astro';
 import { getCollection } from 'astro:content';
 import { publicProjects, publicPosts } from '../lib/content';
 import { site } from '../lib/site';
@@ -21,7 +22,7 @@ const tickerLoop = [
 
 <BaseLayout>
   <section class="hero">
-    <div class="hero-art" aria-hidden="true"></div>
+    <ParticleField />
     <div class="container">
       <div class="hero-top">
         <p class="eyebrow"><span class="eyebrow-star" aria-hidden="true">✳</span> Portfolio · Blog</p>
@@ -29,7 +30,7 @@ const tickerLoop = [
       </div>
 
       <h1 class="hero-title">
-        {site.name}<span class="hero-dot" aria-hidden="true">.</span>
+        {site.name}<span class="hero-dot" aria-hidden="true">.</span><span class="hero-caret" aria-hidden="true">_</span>
       </h1>
 
       <div class="hero-body">
@@ -55,6 +56,12 @@ const tickerLoop = [
               <a href="/about/"><span class="idx">03</span>关于与联系<span class="arr">↘</span></a>
             </li>
           </ol>
+          <dl class="hero-console">
+            <div><dt>STACK</dt><dd>Java / Spring Boot / MySQL</dd></div>
+            <div><dt>MODE</dt><dd>AI Full-stack</dd></div>
+            <div><dt>SEED</dt><dd>20261117</dd></div>
+            <div><dt>FIELD</dt><dd>鼠标靠近扩散</dd></div>
+          </dl>
         </aside>
       </div>
     </div>
