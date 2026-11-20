@@ -2,11 +2,21 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content="0; url=./" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>fengfengfeng12 · 页面未找到</title>
+    <title>fengfengfeng12 · 正在跳转</title>
+    <script>
+      // GitHub Pages 单页深度链接：把原路径交给应用路由（/?r=…）
+      (function () {
+        var path = location.pathname + location.search + location.hash;
+        if (path && path !== '/') {
+          location.replace('/?r=' + encodeURIComponent(path));
+        } else {
+          location.replace('/');
+        }
+      })();
+    </script>
   </head>
   <body>
-    <p>页面未找到，正在返回首页… <a href="./">返回首页</a></p>
+    <p>正在跳转… <a href="/">返回首页</a></p>
   </body>
 </html>

@@ -69,11 +69,17 @@ export default function HeroOverviewPanel() {
             ) : (
               <CircleDot size={16} className="shrink-0 text-caution" />
             )}
-            <span className="truncate">{row.label}</span>
+            <a href={row.href} className="truncate transition-colors duration-150 hover:text-iris">
+              {row.label}
+            </a>
             <span className="ml-auto shrink-0 font-mono text-[12px] text-muted tnum">{row.meta}</span>
             <span
               className={`shrink-0 rounded-[6px] px-2 py-0.5 text-[12px] font-semibold ${
-                row.chip.tone === 'positive' ? 'bg-positive-tint text-positive' : 'bg-caution-tint text-caution'
+                row.chip.tone === 'positive'
+                  ? 'bg-positive-tint text-positive'
+                  : row.chip.tone === 'iris'
+                    ? 'bg-iris-tint text-iris'
+                    : 'bg-caution-tint text-caution'
               }`}
             >
               {row.chip.label}

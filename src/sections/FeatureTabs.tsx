@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
-import { Check, CircleCheck, CircleDot, ExternalLink, Play, Sparkles } from 'lucide-react';
+import { ArrowRight, Check, CircleCheck, CircleDot, ExternalLink, Play, Sparkles } from 'lucide-react';
 import { demoVideos, featureTabs, projects, type ProjectPanel, type ProjectTab, type VideoItem } from '../content';
 
 const ENTRANCE: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -17,11 +17,18 @@ function PanelButtons({ tab, openVideo }: { tab: ProjectTab; openVideo: (v: Vide
     tab.video && tab.id === 'campus' ? demoVideos.campus : tab.video && tab.id === 'ecommerce' ? demoVideos.ecommerce : null;
   return (
     <div className="mt-5 flex flex-wrap items-center gap-2.5 border-t border-line/80 pt-4">
+      <a
+        href={`/projects/${tab.id}/`}
+        className="flex h-9 items-center rounded-full bg-ink px-4 text-[13px] font-semibold text-white transition-all duration-200 hover:-translate-y-px hover:bg-[#1F2940]"
+      >
+        {featureTabs.learnLabel}
+        <ArrowRight size={13} className="ml-1.5" />
+      </a>
       {primary && (
         <button
           type="button"
           onClick={() => openVideo(primary)}
-          className="flex h-9 cursor-pointer items-center rounded-full bg-ink px-4 text-[13px] font-semibold text-white transition-all duration-200 hover:-translate-y-px hover:bg-[#1F2940]"
+          className="flex h-9 cursor-pointer items-center rounded-full border border-line bg-white/70 px-4 text-[13px] font-semibold text-ink transition-all duration-200 hover:-translate-y-px hover:bg-white"
         >
           <Play size={13} className="mr-1.5" />
           {featureTabs.videoLabel}

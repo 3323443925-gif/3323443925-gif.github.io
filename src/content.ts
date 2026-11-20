@@ -39,14 +39,15 @@ export const heroPanels = {
   overview: {
     title: '项目总览',
     chip: '4 个',
-    ring: { percent: 75, label: '3 of 4 已上线', sub: 'QRveo 开发中' },
+    ring: { percent: 100, label: '4 / 4 独立展示页', sub: '点「了解」看完整过程' },
     rows: [
       {
         icon: 'check' as const,
         tone: 'positive' as const,
         label: '校园企业招聘平台',
         meta: '2026',
-        chip: { label: '演示已上线', tone: 'positive' as const },
+        chip: { label: '视频演示', tone: 'iris' as const },
+        href: '/projects/campus/',
       },
       {
         icon: 'check' as const,
@@ -54,6 +55,7 @@ export const heroPanels = {
         label: 'GreatWork 电商管理系统',
         meta: '2026',
         chip: { label: '已完成', tone: 'positive' as const },
+        href: '/projects/ecommerce/',
       },
       {
         icon: 'check' as const,
@@ -61,6 +63,7 @@ export const heroPanels = {
         label: '员工管理系统',
         meta: '2026',
         chip: { label: '已完成', tone: 'positive' as const },
+        href: '/projects/employee/',
       },
       {
         icon: 'dot' as const,
@@ -68,6 +71,7 @@ export const heroPanels = {
         label: 'QRveo 视频二维码',
         meta: '2026',
         chip: { label: '进行中', tone: 'caution' as const },
+        href: '/projects/qrveo/',
       },
     ],
   },
@@ -146,6 +150,7 @@ export interface ProjectTab {
   video?: { src: string; poster?: string };
   chip: string;
   panel: ProjectPanel;
+  body: Block[];
 }
 
 export const featureTabs = {
@@ -155,6 +160,7 @@ export const featureTabs = {
   videoLabel: '演示视频',
   demoLabel: '线上站点',
   repoLabel: '代码仓库',
+  learnLabel: '了解详情',
 };
 
 export const projects: ProjectTab[] = [
@@ -190,6 +196,68 @@ export const projects: ProjectTab[] = [
         { title: '内容本地化与转化路径', state: 'doing' },
       ],
     },
+    body: [
+      { type: 'h2', text: '项目概览' },
+      {
+        type: 'p',
+        text: 'QRveo 是一个面向西语市场的视频二维码平台。商家把产品视频上传后生成二维码，印在包装、说明书上，或直接分享到 WhatsApp；顾客扫码即可在浏览器里观看视频，不需要安装任何 App。',
+      },
+      {
+        type: 'p',
+        text: '和普通二维码相比，二维码指向的是稳定的播放页，而不是一次性视频文件。需要更新内容时，替换视频即可，已经印在包装上的二维码继续有效。',
+      },
+      { type: 'h2', text: '核心流程' },
+      {
+        type: 'ol',
+        items: [
+          '上传产品视频，补充标题和简短说明',
+          '生成二维码，贴到包装或分享链接',
+          '顾客扫码，在浏览器中直接播放',
+          '需要更新时替换视频，二维码保持不变',
+        ],
+      },
+      { type: 'h2', text: '使用场景' },
+      {
+        type: 'ul',
+        items: [
+          '**产品包装**：扫码查看安装视频、使用演示或售后说明',
+          '**说明书与售后卡**：视频更新后不需要重新印刷',
+          '**WhatsApp / SMS**：直接发送二维码图片或播放链接',
+          '**门店物料**：海报、展架、样品标签都可以复用同一个码',
+        ],
+      },
+      { type: 'h2', text: '产品细节' },
+      {
+        type: 'ul',
+        items: [
+          '播放页无广告，打开即可观看',
+          '支持 WhatsApp、SMS 等渠道分享',
+          '支持私有化部署，内容放在客户自己的服务器',
+          '分析统计为可选项，用户同意后才加载',
+          '页面提供西班牙语 / 英语两种语言',
+        ],
+      },
+      { type: 'h2', text: '技术与实现' },
+      {
+        type: 'ul',
+        items: [
+          '页面以静态 HTML 与原生 JavaScript 构建，按 `es-MX` / `en-US` 拆分语言版本',
+          '使用 Cloudflare 提供 CDN、缓存与基础安全防护',
+          '每个页面有独立的标题、描述、`hreflang` 与结构化数据，方便搜索引擎理解',
+          '分析脚本默认不加载，只在用户同意后启用，避免影响首屏',
+          '二维码指向稳定的播放页，视频替换不会影响已经印刷出去的码',
+        ],
+      },
+      { type: 'h2', text: '当前进展' },
+      {
+        type: 'p',
+        text: '已完成西语主站、英语版本、移动端适配和核心 SEO 结构。目前主要在完善内容本地化、转化路径与真实使用场景的验证，比如包装、说明书和门店物料上的扫码体验。',
+      },
+      {
+        type: 'p',
+        text: '下一步会补充案例与帮助内容，并持续优化扫码后的播放速度与页面可读性。',
+      },
+    ],
   },
   {
     id: 'campus',
@@ -205,10 +273,9 @@ export const projects: ProjectTab[] = [
     date: '2026-07-04',
     updated: '2026-11-20',
     repoUrl: 'https://github.com/3323443925-gif/Campus-Enterprise-Job-Platform',
-    demoUrl: 'https://campus-enterprise-job-platform.vercel.app',
     video: {
       src: 'https://ssfeng-java-ai.oss-cn-beijing.aliyuncs.com/%E6%A0%A1%E4%BC%81%E6%8B%9B%E8%81%98%E5%B9%B3%E5%8F%B0.mp4',
-      poster: 'videos/campus-demo.jpg',
+      poster: '/videos/campus-demo.jpg',
     },
     chip: 'JWT 后端统一鉴权',
     panel: {
@@ -223,6 +290,101 @@ export const projects: ProjectTab[] = [
         { cells: ['管理员', '用户与专业管理、企业审核、就业数据统计'], status: '已实现' },
       ],
     },
+    body: [
+      { type: 'h2', text: '背景' },
+      {
+        type: 'p',
+        text: '校园招聘的日常流程通常散落在表格、群聊和线下沟通里：学生找岗位，HR 收简历，教师审核企业，管理员做统计。信息在不同角色之间反复转发，状态很难追踪。',
+      },
+      {
+        type: 'p',
+        text: '这个项目把这些环节放进同一套系统，覆盖从岗位发布、简历投递、面试安排到就业统计的完整流程。',
+      },
+      { type: 'h2', text: '四类角色' },
+      {
+        type: 'table',
+        headers: ['角色', '主要动作'],
+        rows: [
+          ['学生', '维护简历、浏览岗位、投递、查看面试通知'],
+          ['HR', '企业认证、发布岗位、查看简历、发起面试'],
+          ['教师', '审核企业入驻与岗位、查看学生投递情况'],
+          ['管理员', '用户与专业管理、企业审核、就业数据统计'],
+        ],
+      },
+      {
+        type: 'p',
+        text: '角色不同，看到的菜单和可调用的接口也不同。权限不是前端隐藏按钮，而是在后端通过 JWT 与拦截器统一校验。',
+      },
+      { type: 'h2', text: '系统结构' },
+      {
+        type: 'ul',
+        items: [
+          '后端：Spring Boot 3.5 + MyBatis + MySQL',
+          '前端：Vue 3 + Element Plus + ECharts + Vite',
+          '认证：JWT Token + 请求拦截器',
+          '文件：阿里云 OSS 存储简历与附件',
+          'AI：Spring AI 接入 DeepSeek API',
+        ],
+      },
+      {
+        type: 'p',
+        text: '工程采用 Maven 多模块拆分：`pojo` 放实体，`utils` 放通用工具，`end-project` 承载控制器、服务与数据访问。这样依赖版本和公共代码只维护一份。',
+      },
+      { type: 'h2', text: 'AI 能力落在哪里' },
+      { type: 'p', text: '我没有把大模型做成一个通用聊天框，而是限制在三个具体场景：' },
+      {
+        type: 'ol',
+        items: [
+          '**简历分析**：解析简历文本，输出结构化字段与改进建议。',
+          '**简历筛选**：根据岗位要求给出匹配度参考，帮助 HR 排序。',
+          '**AI 面试**：按岗位生成问题，记录候选人的回答。',
+        ],
+      },
+      {
+        type: 'p',
+        text: '所有 AI 结果都作为建议展示，最终决定仍然由人完成。模型输出使用结构化格式并做校验，解析失败时回退到普通文本，不阻塞主流程。',
+      },
+      { type: 'h2', text: '权限与状态如何落地' },
+      {
+        type: 'ul',
+        items: [
+          'JWT 中携带用户标识与角色，拦截器统一校验，不依赖前端隐藏按钮',
+          '学生、HR、教师、管理员看到不同菜单，接口权限在后端判断',
+          '企业认证、岗位审核、投递与面试按状态推进，避免一个字段承担多种含义',
+        ],
+      },
+      { type: 'h2', text: '难点与取舍' },
+      {
+        type: 'p',
+        text: '**权限与状态**：四类角色交叉，投递、面试、录用又是多段状态。先把角色与状态画清楚，再写接口，比边写边加字段更省事。',
+      },
+      {
+        type: 'p',
+        text: '**AI 的不确定性**：同一个简历可能得到不同的分析结果。我的处理是把 AI 放在流程的辅助位置，不参与权限判断，也不直接写数据库。',
+      },
+      {
+        type: 'p',
+        text: '**前后端联调**：接口先定字段与错误码，再并行开发页面，能减少大量返工。',
+      },
+      { type: 'h2', text: '复盘' },
+      {
+        type: 'p',
+        text: '这个项目让我第一次完整走完“需求拆解 → 数据建模 → 接口设计 → 前后端联调 → 部署”的流程。相比单独写 CRUD，更难的是想清楚角色、状态和异常路径。',
+      },
+      {
+        type: 'p',
+        text: '下一步会补充自动化测试与更细的权限用例，并继续观察 AI 功能在真实使用中的边界。',
+      },
+      { type: 'h2', text: '结果与下一步' },
+      {
+        type: 'p',
+        text: '从岗位发布、简历投递到面试安排的主流程已经跑通，完整操作见演示视频。',
+      },
+      {
+        type: 'p',
+        text: '下一步会补上自动化测试、异常路径与更细的权限用例，并把 AI 输出失败时的回退行为覆盖到测试里。',
+      },
+    ],
   },
   {
     id: 'ecommerce',
@@ -240,7 +402,7 @@ export const projects: ProjectTab[] = [
     repoUrl: 'https://github.com/3323443925-gif/E-commerce-platform',
     video: {
       src: 'https://ssfeng-java-ai.oss-cn-beijing.aliyuncs.com/%E6%BC%94%E7%A4%BA%E8%A7%86%E9%A2%91.mp4',
-      poster: 'videos/ecommerce-demo.jpg',
+      poster: '/videos/ecommerce-demo.jpg',
     },
     chip: 'Servlet + MVC 手写框架',
     panel: {
@@ -253,6 +415,90 @@ export const projects: ProjectTab[] = [
         { cells: ['管理端', '商品管理、类型管理、会员管理、订单管理'], status: '已实现' },
       ],
     },
+    body: [
+      { type: 'h2', text: '背景' },
+      {
+        type: 'p',
+        text: '在 Spring 之前，我想先弄明白一个 Web 请求到底经过了什么。于是用 Java 23、Servlet 6 和 JSP 写了一个完整的电商管理系统，不借助 Spring 的自动配置。',
+      },
+      {
+        type: 'p',
+        text: '项目包含会员端与管理端：商品浏览、搜索、购物车、订单、评论，以及后台的商品、类型、会员和订单管理。',
+      },
+      { type: 'h2', text: '功能模块' },
+      {
+        type: 'table',
+        headers: ['端', '主要功能'],
+        rows: [
+          ['会员端', '注册登录、商品浏览与搜索、购物车、订单、评论'],
+          ['管理端', '商品管理、类型管理、会员管理、订单管理'],
+        ],
+      },
+      { type: 'p', text: '两个端共用同一套 DAO 与实体，但在入口处用不同的过滤器隔离权限。' },
+      { type: 'h2', text: '技术栈' },
+      {
+        type: 'ul',
+        items: [
+          'Java 23 + Jakarta Servlet 6',
+          'JSP + JSTL 负责视图',
+          'MySQL 8 存储数据',
+          'Maven 构建，Tomcat 10 部署',
+          'HTML5 + CSS3 + JavaScript 完成页面交互',
+        ],
+      },
+      { type: 'h2', text: 'MVC 分层' },
+      {
+        type: 'code',
+        lang: 'text',
+        text: '浏览器\n  ↓\nServlet Controller   接收参数、调用业务、选择视图\n  ↓\nDAO                  执行 SQL、映射实体\n  ↓\nMySQL\n  ↓\nJSP + JSTL           渲染页面',
+      },
+      {
+        type: 'p',
+        text: '控制器不直接写 SQL，DAO 不关心页面。分层之后，修改表结构时只需要动数据访问层。',
+      },
+      { type: 'h2', text: '设计模式' },
+      { type: 'p', text: '**DAO 工厂**：`DAOFactory` 统一创建 DAO 实例，调用方不依赖具体实现。' },
+      {
+        type: 'p',
+        text: '**代理模式**：`DAOProxy` 封装数据库连接的获取、提交与关闭，业务代码不再重复处理连接生命周期。',
+      },
+      {
+        type: 'p',
+        text: '**过滤器**：`MemberFilter` 与 `ManageFilter` 分别拦截会员端与管理端请求，按 URL 做权限隔离。',
+      },
+      {
+        type: 'p',
+        text: '这些模式在 Spring 项目里通常由框架代劳。手写一遍之后，再看 MyBatis 与 Spring 的设计，会更容易理解它们解决了什么问题。',
+      },
+      { type: 'h2', text: '安全处理' },
+      {
+        type: 'ul',
+        items: [
+          '密码使用 SHA-256 加随机盐存储，不保存明文',
+          '登录态放在 HttpSession 中',
+          '前后台使用独立过滤器，未登录请求直接跳转登录页',
+          '管理端与会话角色绑定，避免只靠前端隐藏入口',
+        ],
+      },
+      { type: 'h2', text: '复盘' },
+      {
+        type: 'p',
+        text: 'Servlet 项目让我看到框架“消失”的那些工作：请求分发、参数解析、连接管理、事务与视图渲染。',
+      },
+      {
+        type: 'p',
+        text: '现在再写 Spring Boot，遇到问题时我会先想：如果不用框架，这一步应该由谁完成。这个视角对排查配置与事务问题很有帮助。',
+      },
+      { type: 'h2', text: '可改进' },
+      {
+        type: 'ul',
+        items: [
+          '**订单与库存**：把下单、扣库存和订单状态变更的边界写清楚，补上并发场景的约束',
+          '**测试**：增加单元测试与集成测试，覆盖登录、下单和后台权限',
+          '**连接管理**：进一步整理 DAO 代理里的连接生命周期，降低后续维护成本',
+        ],
+      },
+    ],
   },
   {
     id: 'employee',
@@ -280,6 +526,101 @@ export const projects: ProjectTab[] = [
         '全局异常处理器把业务异常转换成统一响应',
       ],
     },
+    body: [
+      { type: 'h2', text: '背景' },
+      {
+        type: 'p',
+        text: '这是一个以“把后端基础打牢”为目标的项目：不依赖现成后台模板，从数据库设计开始，手写员工与部门管理的完整接口。',
+      },
+      {
+        type: 'p',
+        text: '功能不复杂，但覆盖了一个后端服务常见的骨架：认证、参数校验、分页查询、文件上传、异常处理和统计接口。',
+      },
+      { type: 'h2', text: '技术栈' },
+      {
+        type: 'table',
+        headers: ['技术', '用途'],
+        rows: [
+          ['Spring Boot 3.5', 'RESTful 服务与自动配置'],
+          ['MyBatis', 'SQL 映射与数据持久化'],
+          ['MySQL 8', '员工、部门、工作经历与操作日志'],
+          ['JWT', '无状态登录认证'],
+          ['PageHelper', '列表分页'],
+          ['Spring AOP', '统一记录操作日志'],
+          ['阿里云 OSS', '头像与附件上传'],
+        ],
+      },
+      { type: 'h2', text: '工程结构' },
+      { type: 'p', text: 'Maven 多模块管理：' },
+      {
+        type: 'ul',
+        items: [
+          '`tlias-parent`：统一依赖版本',
+          '`tails-pojo`：实体类',
+          '`tails-utils`：通用工具',
+          '`manage-project`：控制器、服务、数据访问与配置',
+        ],
+      },
+      {
+        type: 'p',
+        text: '这样拆分的直接好处是：实体和工具可以被其他模块复用，依赖版本也不需要在每个模块里重复声明。',
+      },
+      { type: 'h2', text: '关键实现' },
+      {
+        type: 'p',
+        text: '**认证**：登录成功后签发 JWT，后续请求由拦截器解析 Token。服务端不保存会话，接口保持无状态。',
+      },
+      {
+        type: 'p',
+        text: '**分页与筛选**：员工列表支持按姓名、性别、部门与入职时间组合筛选，分页交给 PageHelper，避免把分页逻辑散落在 SQL 里。',
+      },
+      {
+        type: 'p',
+        text: '**文件上传**：头像通过 OSS SDK 上传，数据库只保存 URL，不把二进制文件塞进 MySQL。',
+      },
+      {
+        type: 'p',
+        text: '**统一异常**：控制器不重复写 try-catch，由全局异常处理器把业务异常转换成统一响应。',
+      },
+      { type: 'p', text: '**报表接口**：按职位与性别统计员工人数，返回前端图表需要的结构。' },
+      { type: 'h2', text: '接口与鉴权流程' },
+      {
+        type: 'ol',
+        items: [
+          '登录接口校验账号与密码，签发 JWT',
+          '拦截器解析 Token，校验通过后放行请求',
+          '控制器只负责参数与响应，业务规则放在服务层',
+          '全局异常处理器把业务异常转换成统一响应',
+        ],
+      },
+      { type: 'h2', text: '数据库设计' },
+      {
+        type: 'p',
+        text: '核心是四张表：部门、员工、工作经历与操作日志。员工与部门是多对一，工作经历与员工是一对多。',
+      },
+      {
+        type: 'p',
+        text: '设计时踩过的一个坑是“删除部门时员工怎么办”。最终选择先校验部门下是否存在员工，存在则拒绝删除，而不是级联删除。',
+      },
+      { type: 'h2', text: '复盘' },
+      {
+        type: 'p',
+        text: '这个项目让我理解了 Spring Boot 项目中各层的职责边界：控制器只处理参数与响应，业务规则放在服务层，SQL 归 MyBatis。',
+      },
+      {
+        type: 'p',
+        text: '下一步会补上参数校验分组、接口文档和集成测试，让它更接近可以交付的后端服务。',
+      },
+      { type: 'h2', text: '可改进' },
+      {
+        type: 'ul',
+        items: [
+          '**参数校验分组**：新增与修改使用不同规则，避免一套校验到处复用',
+          '**接口文档**：补 OpenAPI，减少前后端联调时的口头确认',
+          '**集成测试**：覆盖登录、分页、上传与“删除部门”的边界情况',
+        ],
+      },
+    ],
   },
 ];
 
@@ -430,13 +771,13 @@ export const demoVideos = {
     index: 'DEMO 01',
     title: '校园企业招聘平台 · 演示',
     src: 'https://ssfeng-java-ai.oss-cn-beijing.aliyuncs.com/%E6%A0%A1%E4%BC%81%E6%8B%9B%E8%81%98%E5%B9%B3%E5%8F%B0.mp4',
-    poster: 'videos/campus-demo.jpg',
+    poster: '/videos/campus-demo.jpg',
   },
   ecommerce: {
     index: 'DEMO 02',
     title: 'GreatWork 电商管理系统 · 演示',
     src: 'https://ssfeng-java-ai.oss-cn-beijing.aliyuncs.com/%E6%BC%94%E7%A4%BA%E8%A7%86%E9%A2%91.mp4',
-    poster: 'videos/ecommerce-demo.jpg',
+    poster: '/videos/ecommerce-demo.jpg',
   },
 };
 
