@@ -635,11 +635,13 @@ const heroTracks = [
     overflow: hidden;
     border: 1px solid var(--line);
     background: var(--surface);
-    transition: border-color 0.24s var(--ease-out);
+    transition: border-color 0.24s var(--ease-out),
+      box-shadow 0.24s var(--ease-out);
   }
 
   .cut-cover:hover {
     border-color: var(--line-strong);
+    box-shadow: 0 16px 36px -26px rgba(23, 24, 26, 0.35);
   }
 
   .cut-art {

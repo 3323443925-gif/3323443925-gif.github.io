@@ -2,6 +2,9 @@
 import '@fontsource-variable/schibsted-grotesk/wght.css';
 import '@fontsource/ibm-plex-mono/latin-400.css';
 import '@fontsource/ibm-plex-mono/latin-600.css';
+import schibstedWoff2 from '@fontsource-variable/schibsted-grotesk/files/schibsted-grotesk-latin-wght-normal.woff2';
+import plexMono400 from '@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2';
+import plexMono600 from '@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-600-normal.woff2';
 import '../styles/global.css';
 import Header from './Header.astro';
 import Footer from './Footer.astro';
@@ -44,6 +47,11 @@ const ogImage = new URL(image, siteOrigin);
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" href={schibstedWoff2} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={plexMono400} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={plexMono600} as="font" type="font/woff2" crossorigin />
+    <link rel="preconnect" href="https://ssfeng-java-ai.oss-cn-beijing.aliyuncs.com" />
+    <link rel="dns-prefetch" href="https://ssfeng-java-ai.oss-cn-beijing.aliyuncs.com" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#121212" />

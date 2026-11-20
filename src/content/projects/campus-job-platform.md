@@ -12,7 +12,7 @@ role: 全栈开发
 stack: [Spring Boot, Vue 3, MyBatis, MySQL, Spring AI]
 repoUrl: https://github.com/3323443925-gif/Campus-Enterprise-Job-Platform
 demoUrl: https://campus-enterprise-job-platform.vercel.app
-videoUrl: https://ssfeng-java-ai.oss-cn-beijing.aliyuncs.com/7%E6%9C%885%E6%97%A5.mp4
+videoUrl: https://ssfeng-java-ai.oss-cn-beijing.aliyuncs.com/%E6%A0%A1%E4%BC%81%E6%8B%9B%E8%81%98%E5%B9%B3%E5%8F%B0.mp4
 videoPoster: /videos/campus-demo.jpg
 highlights:
   - 四类角色 + JWT 后端鉴权，覆盖完整招聘流程
