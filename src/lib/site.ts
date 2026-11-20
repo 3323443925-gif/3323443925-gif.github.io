@@ -11,6 +11,7 @@ export const site = {
   github: 'https://github.com/3323443925-gif',
   nav: [
     { href: '/projects/', label: '项目' },
+    { href: '/works/', label: '作品' },
     { href: '/blog/', label: '文章' },
     { href: '/about/', label: '关于' },
   ],

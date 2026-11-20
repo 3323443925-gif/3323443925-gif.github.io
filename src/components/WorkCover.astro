@@ -1,0 +1,243 @@
+---
+interface Props {
+  index: number;
+}
+
+const { index } = Astro.props;
+const pad = String(index).padStart(2, '0');
+const dark = index % 3 === 0;
+const bg = dark ? '#121212' : '#fbfaf7';
+const fg = dark ? '#f2f0eb' : '#17181a';
+const muted = dark ? '#4a4a4d' : '#c9c6be';
+const accent = dark ? '#ff7a2f' : '#e8590c';
+const variant = index % 4;
+
+let seed = index * 104729 + 17;
+const rnd = () => {
+  seed = (seed * 48271) % 2147483647;
+  return seed / 2147483647;
+};
+
+const tracks = Array.from({ length: 6 }, (_, row) => {
+  const clips = [];
+  let x = 24;
+  while (x < 372) {
+    const width = 18 + Math.floor(rnd() * 54);
+    clips.push({
+      x,
+      width: Math.min(width, 376 - x),
+      hot: rnd() > 0.82,
+    });
+    x += width + 6 + Math.floor(rnd() * 12);
+  }
+  return { y: 228 + row * 24, clips };
+});
+
+const playheadX = 48 + Math.floor(rnd() * 300);
+
+const bars = Array.from({ length: 24 }, (_, i) => ({
+  x: 30 + i * 14,
+  h: 18 + Math.floor(rnd() * 110),
+  hot: i === 17 || rnd() > 0.9,
+}));
+
+const cells = Array.from({ length: 30 }, (_, i) => {
+  const col = i % 6;
+  const row = Math.floor(i / 6);
+  return {
+    x: 32 + col * 56,
+    y: 226 + row * 34,
+    filled: rnd() > 0.42,
+    hot: rnd() > 0.84,
+  };
+});
+
+const dots = Array.from({ length: 20 }, () => ({
+  x: 20 + rnd() * 360,
+  y: 205 + rnd() * 210,
+  r: 0.8 + rnd() * 1.4,
+}));
+
+const arcRadii = [36, 58, 80, 102, 124];
+---
+
+<svg
+  class="cut-art"
+  viewBox="0 0 400 500"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  focusable="false"
+>
+  <rect width="400" height="500" fill={bg} />
+
+  <path
+    d="M14 26V14h12M386 26V14h-12M14 474v12h12M386 474v12h-12"
+    fill="none"
+    stroke={muted}
+    stroke-width="1"
+    opacity="0.6"
+  />
+
+  <g font-family="'IBM Plex Mono', monospace" font-size="11" letter-spacing="1.6">
+    <text x="24" y="34" fill={muted}>CUT / {pad}</text>
+    <text x="376" y="34" text-anchor="end" fill={muted}>
+      00:{pad}:0{index % 9}
+    </text>
+  </g>
+
+  <text
+    x="22"
+    y="172"
+    font-family="'IBM Plex Mono', monospace"
+    font-size="122"
+    font-weight="600"
+    letter-spacing="-6"
+    fill={fg}
+    opacity="0.96"
+  >
+    {pad}
+  </text>
+
+  <text
+    x="26"
+    y="196"
+    font-family="'IBM Plex Mono', monospace"
+    font-size="10"
+    letter-spacing="2.6"
+    fill={muted}
+  >
+    OPERATIONS / SHORT
+  </text>
+
+  {variant === 0 && (
+    <g>
+      {tracks.map((track) => (
+        <g>
+          {track.clips.map((clip) => (
+            <rect
+              x={clip.x}
+              y={track.y}
+              width={clip.width}
+              height="10"
+              fill={clip.hot ? accent : fg}
+              opacity={clip.hot ? 0.9 : 0.14}
+              stroke={clip.hot ? accent : muted}
+              stroke-opacity={clip.hot ? 0.9 : 0.35}
+            />
+          ))}
+        </g>
+      ))}
+      <line
+        x1={playheadX}
+        y1="218"
+        x2={playheadX}
+        y2="392"
+        stroke={accent}
+        stroke-width="1.5"
+      />
+      <path
+        d={`M${playheadX - 4} 218h8l-4 6z`}
+        fill={accent}
+      />
+    </g>
+  )}
+
+  {variant === 1 && (
+    <g>
+      <line x1="24" y1="320" x2="376" y2="320" stroke={muted} stroke-opacity="0.5" />
+      {bars.map((bar) => (
+        <rect
+          x={bar.x}
+          y={320 - bar.h / 2}
+          width="6"
+          height={bar.h}
+          fill={bar.hot ? accent : fg}
+          opacity={bar.hot ? 0.95 : 0.5}
+        />
+      ))}
+    </g>
+  )}
+
+  {variant === 2 && (
+    <g>
+      {arcRadii.map((r) => (
+        <circle
+          cx="282"
+          cy="306"
+          r={r}
+          fill="none"
+          stroke={r === 102 ? accent : fg}
+          stroke-opacity={r === 102 ? 0.9 : 0.22}
+          stroke-width={r === 102 ? 1.5 : 1}
+          stroke-dasharray={r === 102 ? '3 7' : undefined}
+        />
+      ))}
+      <line x1="282" y1="168" x2="282" y2="444" stroke={muted} stroke-opacity="0.45" />
+      <line x1="144" y1="306" x2="420" y2="306" stroke={muted} stroke-opacity="0.45" />
+      <circle cx="282" cy="306" r="4" fill={accent} />
+      <rect x="34" y="246" width="72" height="120" fill="none" stroke={muted} stroke-opacity="0.5" />
+      <rect x="46" y="258" width="48" height="8" fill={fg} opacity="0.5" />
+      <rect x="46" y="274" width="34" height="8" fill={fg} opacity="0.3" />
+    </g>
+  )}
+
+  {variant === 3 && (
+    <g>
+      {cells.map((cell) => (
+        <rect
+          x={cell.x}
+          y={cell.y}
+          width="36"
+          height="22"
+          fill={cell.hot ? accent : cell.filled ? fg : 'none'}
+          opacity={cell.hot ? 0.9 : cell.filled ? 0.75 : 1}
+          stroke={cell.hot ? accent : muted}
+          stroke-opacity={cell.hot ? 0.9 : 0.5}
+        />
+      ))}
+      <line
+        x1="24"
+        y1="392"
+        x2="376"
+        y2="218"
+        stroke={accent}
+        stroke-width="1.5"
+        stroke-dasharray="3 7"
+        opacity="0.75"
+      />
+    </g>
+  )}
+
+  <g fill={fg} opacity="0.15">
+    {dots.map((dot) => (
+      <circle cx={dot.x} cy={dot.y} r={dot.r} />
+    ))}
+  </g>
+
+  <line x1="24" y1="420" x2="376" y2="420" stroke={muted} stroke-opacity="0.55" />
+
+  <rect x="24" y="438" width="24" height="24" fill={accent} />
+  <path d="M33 444l10 6-10 6z" fill={bg} />
+
+  <text
+    x="58"
+    y="455"
+    font-family="'IBM Plex Mono', monospace"
+    font-size="10"
+    letter-spacing="2.2"
+    fill={fg}
+  >
+    SCRIPT / EDIT
+  </text>
+  <text
+    x="376"
+    y="455"
+    text-anchor="end"
+    font-family="'IBM Plex Mono', monospace"
+    font-size="10"
+    letter-spacing="2.2"
+    fill={muted}
+  >
+    EDIT / {pad}
+  </text>
+</svg>
