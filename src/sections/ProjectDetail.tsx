@@ -135,7 +135,7 @@ export default function ProjectDetail({ project }: { project: ProjectTab }) {
 
       <section className="pb-24 pt-14">
         <div className="mx-auto grid w-full max-w-container gap-14 px-6 lg:grid-cols-[280px_minmax(0,1fr)]">
-          <aside className="lg:sticky lg:top-24 lg:self-start">
+          <aside className="min-w-0 lg:sticky lg:top-24 lg:self-start">
             <div className="glass rounded-panel p-5">
               <p className="m-0 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">
                 Highlights
@@ -167,7 +167,7 @@ export default function ProjectDetail({ project }: { project: ProjectTab }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.7, ease: ENTRANCE }}
-            className="max-w-[720px]"
+            className="max-w-[720px] min-w-0"
           >
             <Prose blocks={project.body} />
 
