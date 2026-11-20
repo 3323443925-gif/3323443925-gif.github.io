@@ -1,0 +1,149 @@
+---
+interface Props {
+  src: string;
+  poster: string;
+  title: string;
+}
+
+const { src, poster, title } = Astro.props;
+---
+
+<div class="video-player" data-video-player>
+  <video
+    class="demo-video"
+    poster={poster}
+    preload="none"
+    playsinline
+    width="1280"
+    height="720"
+    aria-label={`${title} 演示视频`}
+  >
+    <source src={src} type="video/mp4" />
+    你的浏览器不支持视频播放，
+    <a href={src} target="_blank" rel="noopener noreferrer">在新窗口打开视频</a>。
+  </video>
+
+  <a
+    class="demo-play"
+    href={src}
+    target="_blank"
+    rel="noopener noreferrer"
+    data-demo-play
+    aria-label={`播放 ${title} 演示视频`}
+  >
+    <span class="demo-play-icon" aria-hidden="true">▶</span>
+    <span class="demo-play-text">播放演示</span>
+  </a>
+</div>
+
+<script>
+  const players = document.querySelectorAll<HTMLElement>('[data-video-player]');
+
+  players.forEach((player) => {
+    const video = player.querySelector<HTMLVideoElement>('video');
+    const trigger = player.querySelector<HTMLAnchorElement>('[data-demo-play]');
+    if (!video || !trigger) return;
+
+    trigger.addEventListener('click', (event) => {
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+
+      document.querySelectorAll<HTMLVideoElement>('.demo-video').forEach((other) => {
+        if (other !== video) other.pause();
+      });
+
+      video.controls = true;
+      const playPromise = video.play();
+      if (playPromise) {
+        playPromise.catch(() => {
+          window.open(trigger.href, '_blank', 'noopener');
+        });
+      }
+    });
+
+    video.addEventListener('play', () => {
+      video.controls = true;
+      player.classList.add('is-playing');
+    });
+
+    video.addEventListener('ended', () => {
+      player.classList.remove('is-playing');
+      video.controls = false;
+      video.currentTime = 0;
+    });
+  });
+</script>
+
+<style>
+  .video-player {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--night);
+  }
+
+  .demo-video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .demo-play {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: var(--night-text);
+    background: linear-gradient(
+      180deg,
+      rgba(18, 18, 18, 0.04),
+      rgba(18, 18, 18, 0.58)
+    );
+    transition: opacity 0.24s var(--ease-out),
+      visibility 0.24s var(--ease-out);
+  }
+
+  .demo-play-icon {
+    display: grid;
+    place-items: center;
+    width: 58px;
+    height: 58px;
+    padding-left: 3px;
+    border-radius: var(--radius-sm);
+    background: var(--night-text);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1;
+    transition: background 0.22s var(--ease-out),
+      transform 0.22s var(--ease-out);
+  }
+
+  .demo-play-text {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .demo-play:hover .demo-play-icon {
+    background: var(--accent-bright);
+    transform: translateY(-2px);
+  }
+
+  .video-player.is-playing .demo-play {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .demo-play,
+    .demo-play-icon {
+      transition: none;
+    }
+  }
+</style>

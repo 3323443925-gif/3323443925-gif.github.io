@@ -4,11 +4,27 @@ import SectionHead from '../components/SectionHead.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import PostRow from '../components/PostRow.astro';
 import ParticleField from '../components/ParticleField.astro';
+import VideoPlayer from '../components/VideoPlayer.astro';
 import { getCollection } from 'astro:content';
 import { publicProjects, publicPosts } from '../lib/content';
 import { site } from '../lib/site';
 
-const projects = publicProjects(await getCollection('projects')).slice(0, 6);
+const allProjects = publicProjects(await getCollection('projects'));
+const projects = allProjects.slice(0, 6);
+const demos = allProjects.flatMap((project) => {
+  const { videoUrl, videoPoster, demoUrl } = project.data;
+  if (!videoUrl || !videoPoster) return [];
+  return [
+    {
+      project,
+      videoUrl,
+      videoPoster,
+      host: demoUrl
+        ? new URL(demoUrl).hostname.replace(/^www\./, '')
+        : null,
+    },
+  ];
+});
 const posts = publicPosts(await getCollection('blog')).slice(0, 5);
 
 const tickerItems = ['Java', 'Spring Boot', 'MySQL', 'MyBatis', 'AI 全栈', '系统设计'];
@@ -47,13 +63,16 @@ const tickerLoop = [
           <p class="mono-label">Index</p>
           <ol>
             <li>
-              <a href="#projects"><span class="idx">01</span>精选项目<span class="arr">↘</span></a>
+              <a href="#demos"><span class="idx">01</span>项目演示<span class="arr">↘</span></a>
             </li>
             <li>
-              <a href="#writing"><span class="idx">02</span>最新文章<span class="arr">↘</span></a>
+              <a href="#projects"><span class="idx">02</span>精选项目<span class="arr">↘</span></a>
             </li>
             <li>
-              <a href="/about/"><span class="idx">03</span>关于与联系<span class="arr">↘</span></a>
+              <a href="#writing"><span class="idx">03</span>最新文章<span class="arr">↘</span></a>
+            </li>
+            <li>
+              <a href="/about/"><span class="idx">04</span>关于与联系<span class="arr">↘</span></a>
             </li>
           </ol>
           <dl class="hero-console">
@@ -83,10 +102,58 @@ const tickerLoop = [
     </div>
   </section>
 
+  {demos.length > 0 && (
+    <section class="section" id="demos">
+      <div class="container">
+        <SectionHead label="01 / Live demo" title="项目演示" />
+        <div class="demo-grid">
+          {demos.map((demo, index) => {
+            const data = demo.project.data;
+            return (
+              <article
+                class="demo-card"
+                data-reveal
+                style={`--reveal-delay:${index * 60}ms`}
+              >
+                <VideoPlayer
+                  src={demo.videoUrl}
+                  poster={demo.videoPoster}
+                  title={data.title}
+                />
+                <div class="demo-body">
+                  <div class="demo-meta">
+                    <span>DEMO / {String(index + 1).padStart(2, '0')}</span>
+                    <span>{data.role}</span>
+                  </div>
+                  <h3 class="demo-title">
+                    <a href={`/projects/${data.slug}/`}>{data.title}</a>
+                  </h3>
+                  <p class="demo-desc">{data.summary}</p>
+                  <div class="demo-actions">
+                    {demo.host && data.demoUrl && (
+                      <a
+                        href={data.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {demo.host} ↗
+                      </a>
+                    )}
+                    <a href={`/projects/${data.slug}/`}>项目详情 →</a>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  )}
+
   <section class="section" id="projects">
     <div class="container">
       <SectionHead
-        label="01 / Selected work"
+        label="02 / Selected work"
         title="精选项目"
         href="/projects/"
         linkText="全部项目"
@@ -106,7 +173,7 @@ const tickerLoop = [
   <section class="section" id="writing">
     <div class="container">
       <SectionHead
-        label="02 / Latest writing"
+        label="03 / Latest writing"
         title="最新文章"
         href="/blog/"
         linkText="全部文章"

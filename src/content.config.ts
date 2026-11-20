@@ -18,6 +18,8 @@ const projects = defineCollection({
     stack: z.array(z.string()).min(1),
     repoUrl: z.string().url().optional(),
     demoUrl: z.string().url().optional(),
+    videoUrl: z.string().url().optional(),
+    videoPoster: z.string().optional(),
     highlights: z.array(z.string()).max(3).default([]),
   }),
 });

@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../components/BaseLayout.astro';
+import VideoPlayer from '../../components/VideoPlayer.astro';
 import { publicProjects, formatDate } from '../../lib/content';
 import type { Project } from '../../lib/content';
 
@@ -121,6 +122,20 @@ const links = [
         )}
       </div>
     </header>
+
+    {data.videoUrl && data.videoPoster && (
+      <section class="section detail-demo" aria-labelledby="demo-heading">
+        <div class="container">
+          <p class="section-label">Demo</p>
+          <h2 class="section-title" id="demo-heading">演示视频</h2>
+          <VideoPlayer
+            src={data.videoUrl}
+            poster={data.videoPoster}
+            title={data.title}
+          />
+        </div>
+      </section>
+    )}
 
     <div class="container detail-body">
       <div class="prose">

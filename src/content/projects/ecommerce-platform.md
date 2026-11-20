@@ -11,6 +11,8 @@ priority: 68
 role: 后端开发
 stack: [Java 23, Servlet, JSP, MySQL, Maven]
 repoUrl: https://github.com/3323443925-gif/E-commerce-platform
+videoUrl: https://ssfeng-java-ai.oss-cn-beijing.aliyuncs.com/%E6%BC%94%E7%A4%BA%E8%A7%86%E9%A2%91.mp4
+videoPoster: /videos/ecommerce-demo.jpg
 highlights:
   - Servlet + JSP 手写 MVC，会员端 / 管理端分离
   - DAO 工厂 + 代理统一管理连接与提交

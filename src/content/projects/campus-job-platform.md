@@ -12,6 +12,8 @@ role: 全栈开发
 stack: [Spring Boot, Vue 3, MyBatis, MySQL, Spring AI]
 repoUrl: https://github.com/3323443925-gif/Campus-Enterprise-Job-Platform
 demoUrl: https://campus-enterprise-job-platform.vercel.app
+videoUrl: https://ssfeng-java-ai.oss-cn-beijing.aliyuncs.com/7%E6%9C%885%E6%97%A5.mp4
+videoPoster: /videos/campus-demo.jpg
 highlights:
   - 四类角色 + JWT 后端鉴权，覆盖完整招聘流程
   - Spring AI 接入 DeepSeek：简历分析、筛选与 AI 面试
