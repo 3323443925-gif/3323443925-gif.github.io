@@ -3,9 +3,9 @@ title: 校园企业招聘平台
 slug: campus-job-platform
 summary: 面向学生、HR、教师与管理员的一站式校园招聘平台，把 Java 后端与 AI 能力接进完整流程。
 date: 2026-07-04
-updated: 2026-10-29
+updated: 2026-11-20
 cover: /covers/campus-platform.svg
-tags: [Java, Spring Boot, AI]
+tags: [Java, Spring Boot, AI, 全栈]
 featured: true
 priority: 95
 role: 全栈开发
@@ -13,9 +13,9 @@ stack: [Spring Boot, Vue 3, MyBatis, MySQL, Spring AI]
 repoUrl: https://github.com/3323443925-gif/Campus-Enterprise-Job-Platform
 demoUrl: https://campus-enterprise-job-platform.vercel.app
 highlights:
-  - 覆盖学生、HR、教师、管理员四类角色的完整招聘流程
-  - 接入 Spring AI（DeepSeek）完成简历分析与 AI 面试
-  - 前后端分离：Spring Boot REST API + Vue 3 管理端
+  - 四类角色 + JWT 后端鉴权，覆盖完整招聘流程
+  - Spring AI 接入 DeepSeek：简历分析、筛选与 AI 面试
+  - 前后端分离 + OSS 文件存储，前端已部署演示
 ---
 
 ## 背景
@@ -55,6 +55,12 @@ highlights:
 
 所有 AI 结果都作为建议展示，最终决定仍然由人完成。模型输出使用结构化格式并做校验，解析失败时回退到普通文本，不阻塞主流程。
 
+## 权限与状态如何落地
+
+- JWT 中携带用户标识与角色，拦截器统一校验，不依赖前端隐藏按钮
+- 学生、HR、教师、管理员看到不同菜单，接口权限在后端判断
+- 企业认证、岗位审核、投递与面试按状态推进，避免一个字段承担多种含义
+
 ## 难点与取舍
 
 **权限与状态**：四类角色交叉，投递、面试、录用又是多段状态。先把角色与状态画清楚，再写接口，比边写边加字段更省事。
@@ -68,3 +74,9 @@ highlights:
 这个项目让我第一次完整走完“需求拆解 → 数据建模 → 接口设计 → 前后端联调 → 部署”的流程。相比单独写 CRUD，更难的是想清楚角色、状态和异常路径。
 
 下一步会补充自动化测试与更细的权限用例，并继续观察 AI 功能在真实使用中的边界。
+
+## 结果与下一步
+
+从岗位发布、简历投递到面试安排的主流程已经跑通，前端部署在 Vercel 上可以直接体验。
+
+下一步会补上自动化测试、异常路径与更细的权限用例，并把 AI 输出失败时的回退行为覆盖到测试里。

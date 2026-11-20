@@ -26,9 +26,16 @@ const { project, prev, next } = Astro.props;
 const { Content } = await render(project);
 const data = project.data;
 const year = formatDate(data.date).slice(0, 4);
+const demoHost = data.demoUrl
+  ? new URL(data.demoUrl).hostname.replace(/^www\./, '')
+  : null;
 const links = [
-  ...(data.repoUrl ? [{ label: '代码仓库', url: data.repoUrl }] : []),
-  ...(data.demoUrl ? [{ label: '线上演示', url: data.demoUrl }] : []),
+  ...(data.repoUrl
+    ? [{ label: '代码仓库', url: data.repoUrl, display: '代码仓库' }]
+    : []),
+  ...(data.demoUrl && demoHost
+    ? [{ label: '线上站点', url: data.demoUrl, display: demoHost }]
+    : []),
 ];
 ---
 
@@ -48,6 +55,21 @@ const links = [
 
         <h1 class="article-title">{data.title}</h1>
         <p class="article-summary">{data.summary}</p>
+
+        {data.demoUrl && demoHost && (
+          <a
+            class="project-live"
+            href={data.demoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`打开 ${data.title} 线上网站：${data.demoUrl}`}
+          >
+            <span class="project-live-dot" aria-hidden="true"></span>
+            <span class="project-live-label">线上站点</span>
+            <span class="project-live-url">{demoHost}</span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+        )}
 
         <div class="stack">
           {data.stack.map((item) => <span class="chip">{item}</span>)}
@@ -70,7 +92,7 @@ const links = [
                     <>
                       {index > 0 && ' · '}
                       <a href={link.url} target="_blank" rel="noopener noreferrer">
-                        {link.label} ↗
+                        {link.display} ↗
                       </a>
                     </>
                   ))

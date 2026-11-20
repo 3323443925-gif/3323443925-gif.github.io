@@ -33,9 +33,9 @@
     const seed = 20261117;
     const linkDistance = 158;
     const cursorRadius = 185;
-    const cobalt = '#7d95ff';
-    const signal = '#ff6a3d';
-    const cream = '#f2eee4';
+    const lineColor = '#f2f0eb';
+    const accent = '#ff7a2f';
+    const cream = '#f2f0eb';
 
     let reduced = media.matches;
     let particles: Particle[] = [];
@@ -209,8 +209,8 @@
           const strength = 1 - distance / linkDistance;
           const isSignal = a.hub || b.hub;
 
-          ctx.globalAlpha = strength * (isSignal ? 0.32 : 0.26);
-          ctx.strokeStyle = isSignal ? signal : cobalt;
+          ctx.globalAlpha = strength * (isSignal ? 0.32 : 0.2);
+          ctx.strokeStyle = isSignal ? accent : lineColor;
           ctx.lineWidth = 0.6 + strength * 0.9;
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
@@ -222,7 +222,7 @@
       for (const particle of particles) {
         if (particle.hub) {
           ctx.globalAlpha = 0.18;
-          ctx.strokeStyle = signal;
+          ctx.strokeStyle = accent;
           ctx.lineWidth = 0.9;
           ctx.beginPath();
           ctx.arc(particle.x, particle.y, particle.size + 17, 0, Math.PI * 2);
@@ -237,7 +237,7 @@
         }
 
         ctx.globalAlpha = particle.alpha;
-        ctx.fillStyle = particle.hub ? signal : cream;
+        ctx.fillStyle = particle.hub ? accent : cream;
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
         ctx.fill();
@@ -258,7 +258,7 @@
       }
 
       if (pointer.active) {
-        ctx.strokeStyle = cobalt;
+        ctx.strokeStyle = accent;
         ctx.globalAlpha = 0.36;
         ctx.lineWidth = 1;
         ctx.beginPath();
@@ -289,7 +289,7 @@
         }
 
         ctx.globalAlpha = 0.9;
-        ctx.fillStyle = cobalt;
+        ctx.fillStyle = accent;
         ctx.beginPath();
         ctx.arc(pointer.x, pointer.y, 1.4, 0, Math.PI * 2);
         ctx.fill();

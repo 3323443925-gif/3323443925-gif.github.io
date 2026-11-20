@@ -9,11 +9,14 @@ interface Props {
 }
 
 const { project, variant = 'grid', index } = Astro.props;
-const { title, slug, summary, cover, role, stack, date } = project.data;
+const { title, slug, summary, cover, role, stack, date, demoUrl } = project.data;
 const href = `/projects/${slug}/`;
 const year = formatDate(date).slice(0, 4);
 const indexLabel = index ? String(index).padStart(2, '0') : null;
-const revealDelay = `${Math.min((index ?? 1) - 1, 5) * 60}ms`;
+const demoHost = demoUrl
+  ? new URL(demoUrl).hostname.replace(/^www\./, '')
+  : null;
+const revealDelay = `${Math.min((index ?? 1) - 1, 5) * 40}ms`;
 ---
 
 {variant === 'feature' ? (
@@ -38,6 +41,18 @@ const revealDelay = `${Math.min((index ?? 1) - 1, 5) * 60}ms`;
       <div class="stack">
         {stack.map((item) => <span class="chip">{item}</span>)}
       </div>
+      {demoUrl && demoHost && (
+        <a
+          class="project-site"
+          href={demoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          title={demoUrl}
+          aria-label={`打开 ${title} 线上网站：${demoUrl}`}
+        >
+          {demoHost} <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+      )}
       <a class="read-more" href={href}>
         查看项目 <span class="arrow">→</span>
       </a>
@@ -64,6 +79,18 @@ const revealDelay = `${Math.min((index ?? 1) - 1, 5) * 60}ms`;
         {stack.slice(0, 3).map((item) => <span class="chip">{item}</span>)}
         {stack.length > 3 && <span class="chip">+{stack.length - 3}</span>}
       </div>
+      {demoUrl && demoHost && (
+        <a
+          class="project-site"
+          href={demoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          title={demoUrl}
+          aria-label={`打开 ${title} 线上网站：${demoUrl}`}
+        >
+          {demoHost} <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+      )}
       <div class="project-card-foot">
         <span class="project-year">{year}</span>
         <a class="read-more" href={href}>

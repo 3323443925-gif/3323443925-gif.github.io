@@ -11,7 +11,7 @@ const { post, index } = Astro.props;
 const { title, slug, summary, date } = post.data;
 const href = `/blog/${slug}/`;
 const indexLabel = index ? String(index).padStart(2, '0') : null;
-const revealDelay = `${Math.min((index ?? 1) - 1, 6) * 45}ms`;
+const revealDelay = `${Math.min((index ?? 1) - 1, 6) * 40}ms`;
 ---
 
 <article class="post-row" data-reveal style={`--reveal-delay: ${revealDelay}`}>

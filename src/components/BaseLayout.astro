@@ -1,5 +1,7 @@
 ---
-import '@fontsource-variable/fraunces/wght.css';
+import '@fontsource-variable/schibsted-grotesk/wght.css';
+import '@fontsource/ibm-plex-mono/latin-400.css';
+import '@fontsource/ibm-plex-mono/latin-600.css';
 import '../styles/global.css';
 import Header from './Header.astro';
 import Footer from './Footer.astro';
@@ -44,7 +46,7 @@ const ogImage = new URL(image, siteOrigin);
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="theme-color" content="#0c0f16" />
+    <meta name="theme-color" content="#121212" />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <script is:inline>
       document.documentElement.classList.add('js-reveal');
